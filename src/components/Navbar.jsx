@@ -42,10 +42,10 @@ const NavBar = () => {
                 <NavLink to="/" relative="path">Home</NavLink> 
                 </li>
                 <li>
-                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Inbox</span>)}
+                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
                 </li>
                 <li>
-                {connectedAccount ? (<NavLink to="/sent" relative="path">Sent</NavLink> ): (<span onClick={showModalNotConnected}>Sent</span>)}
+                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
                 </li>
                 <li></li>
               </ul>
