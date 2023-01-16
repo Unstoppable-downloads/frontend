@@ -1,0 +1,26 @@
+<script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        setTimeout(async () => {
+            const node = await Ipfs.create()
+            const results = await node.add('=^.^= meow meow')
+            console.log('results', results)
+            const cid = results.cid.toString()
+            console.log('CID created via ipfs.add:', cid)
+
+            const stream = node.cat(cid);
+            
+            const decoder = new TextDecoder()
+            let data = ''
+
+            for await (const chunk of stream) {
+                // chunks of data are returned as a Uint8Array, convert it back to a string
+                data += decoder.decode(chunk, { stream: true })
+            }
+
+
+            console.log('Data read back via ipfs.cat:', new TextDecoder().decode(data))
+        }, 5000);
+
+    })
+</script>
