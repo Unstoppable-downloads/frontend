@@ -39,13 +39,13 @@ const NavBar = () => {
             <nav className="top-navigation">
               <ul className="flex list-none">
                 <li>
-                <NavLink to="/" relative="path">Home</NavLink> 
+                <NavLink to="/" relative="path">Search</NavLink> 
                 </li>
                 <li>
                 {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
                 </li>
                 <li>
-                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
+                &nbsp;
                 </li>
                 <li></li>
               </ul>
