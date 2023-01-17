@@ -20,7 +20,7 @@ export const AceProvider = ({ children }) => {
   const [addressTo, setAddressTo] = useState("");
   const [price, setPrice] = useState(0);
   const [message, setMessage] = useState("");
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
   const [background, setBackground] = useState({});
   const [bgCreator, setBgCreator] = useState({});
   const [creativeMode, setCreativeMode] = useState(true);
@@ -211,8 +211,8 @@ export const AceProvider = ({ children }) => {
         setPrice,
         message,
         setMessage,
-        selectedFiles,
-        setSelectedFiles,
+        selectedFile,
+        setSelectedFile,
         background,
         setBackground,
         bgCreator,
