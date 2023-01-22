@@ -1,39 +1,31 @@
-import * as ace from "../shared/constants";
+import * as usdl from "../shared/constants";
 import { createHash } from "crypto-browserify";
+
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
 
 const hashIt = (str)=>{
   return createHash('sha256').update(str).digest('hex');
 }
 
-export function generateDatasetNameLookup(owner?: string, requesterrestrict?: string) {
+export function generateDatasetNameLookup(owner?: string) {
   
   let lookupStr = "";
 
   if (owner)
   {
-     let str1 = `${owner}${ace.APP_ADDRESS}`.toLowerCase();
+     let str1 = `${owner}${usdl.APP_ADDRESS}`.toLowerCase();
      lookupStr += hashIt(str1) ;
-  }
-
-  if (requesterrestrict)
-  {
-     let str2 = `${ace.APP_ADDRESS}${requesterrestrict}`.toLowerCase();
-     lookupStr += hashIt(str2) ;
   }
 
   return lookupStr;
 }
 
-export function generateDatasetName(owner: string, requesterrestrict: string) {
+export function generateDatasetName(owner: string) {
 
-  console.log("generateDatasetName OWNER ", owner, "requesterrestrict", requesterrestrict);
+  const str1 = `${owner}${usdl.APP_ADDRESS}`.toLowerCase() ;
 
-  const str1 = `${owner}${ace.APP_ADDRESS}`.toLowerCase();
-  const str2 = `${ace.APP_ADDRESS}${requesterrestrict}`.toLowerCase();
-
-  const hash = `${hashIt(str1)}${hashIt(str2)}`;
-  const name = `${hash}${new Date().getTime().toString()}#${requesterrestrict}`
+  const hash = `${hashIt(str1)}`;
+  const name = `${hash}${new Date().getTime().toString()}`
             // file name
   return name;
 }

@@ -4,12 +4,7 @@ import * as ace from "../../shared/constants";
 import { delay } from "../../utils/delay";
 import { isAddress } from "../../utils/isAddress";
 
-import {
-  encryptFile,
-  encryptDataset,
-  generateEncryptedFileChecksum,
-  datasetEncryptionKey,
-} from "./encryption.js";
+import { encryptFile, encryptDataset, generateEncryptedFileChecksum, datasetEncryptionKey } from "./encryption.js";
 import { deployDataset, pushSecret, pushOrder } from "./deploy.js";
 import { generateDatasetName } from "../../utils/datasetNameGenerator.ts";
 import { jsonToBuffer } from "../../utils/jsonToBuffer";
@@ -17,64 +12,32 @@ import { getIexec } from "../../shared/getIexec";
 import { uploadFileToIpfs } from "./uploader.ts";
 import { downloadFile } from "../Download/downloader.ts";
 
-import ReactTooltip from "react-tooltip";
+
+
+import ReactTooltip from 'react-tooltip';
 import { setModalContent, toggleModal } from "../Modal/ModalController";
 import Modal from "../Modal/Modal";
 const { ethereum } = window;
 
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
+
 
 const SendForm = () => {
-  const { connectedAccount, connectWallet, getNextIpfsGateway } =
-    useContext(AceContext);
+  const { connectedAccount, connectWallet, getNextIpfsGateway } = useContext(AceContext);
 
-  const {
-    isLoading,
-    setIsLoading,
-    addressTo,
-    setAddressTo,
-    step,
-    setStep,
-    price,
-    setPrice,
-    message,
-    setMessage,
-    selectedFile,
-    setSelectedFile,
-    checkFileAvailability,
-    setIsAvailable,
-  } = useContext(AceContext);
+  const { isLoading, setIsLoading, addressTo, setAddressTo, step, setStep, price, setPrice, message, setMessage, selectedFiles, setSelectedFiles, checkFileAvailability, setIsAvailable } = useContext(AceContext);
   const inputFile = useRef(null);
   const [isAFile, setIsAFile] = useState(false);
-  const [selectedValueList, setSelectedValueList] = useState("");
-  const [description, setDescription] = useState("");
 
-  useEffect(() => {}, [selectedFile])
 
-  const BEGINNING_PROCESS = 0;
-  const ENCRYPTING_FILE = 1;
-  const UPLOADING_FILE = 2;
-  const ENCRYPTING_DATASET = 3;
-  const UPLOADING_DATASET = 4;
-  const DEPLOYING_DATASET = 5;
-  const PUSHING_SECRET = 6;
-  const FINISHED = 7;
-  const DELAY_BEFORE_CHECKING_FILE_UPLOADED = 3;
   let resolvedAddressTo;
 
   const handleChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    setSelectedFiles([...selectedFiles, event.target.files[0]]);
     setIsAFile(true);
-      if (IS_DEBUG) console.log(selectedFile);
-      if (IS_DEBUG) console.log("isAFile", isAFile);
-  };
-
-  const handleChangeList = (e) => {
-    setSelectedValueList(e.target.value);
-  };
-
-  const handleChangeDescr = (e) => {
-    setDescription(e.target.value);
+    for (var i = 0; i < selectedFiles.length; i += 1) {
+      if (IS_DEBUG) console.log(selectedFiles[i]);
+    }
   };
 
   var optimistic = false;
@@ -84,30 +47,27 @@ const SendForm = () => {
     optimistic = checkbox.checked;
   };
 
+
   var setInprogress = () => {
     document.getElementById("btn-transfer").classList.add("btn-inverted");
     document.getElementById("btn-transfer").innerText = "In progress...";
     document.getElementById("btn-transfer").disabled = true;
-  };
+  }
 
   var setReady = () => {
     document.getElementById("btn-transfer").classList.remove("btn-inverted");
     document.getElementById("btn-transfer").innerText = "Tranfer";
     document.getElementById("btn-transfer").disabled = true;
-  };
+  }
 
   const showModalFileSent = () => {
-    setModalContent(
-      "sendform-modal",
-      "File sent 🚀",
-      `The owner of wallet ${addressTo} will get a new item in the inbox!`,
-      true
-    );
-  };
+    setModalContent("sendform-modal", "File sent 🚀", `The owner of wallet ${addressTo} will get a new item in the inbox!`, true);
+  }
 
   const modalCloseHandler = () => {
     window.location.reload(false);
-  };
+  }
+
 
   const validateForm = async () => {
     let iexec = null;
@@ -115,57 +75,37 @@ const SendForm = () => {
 
     if (!ethereum && isSafari) {
       let modalText = "Please install the Metamask plugin.";
-      modalText += isSafari
-        ? "<br/>Metamask is not currently supported on Safari. Please use another browser like Chrome."
-        : "";
+      modalText += isSafari ? "<br/>Metamask is not currently supported on Safari. Please use another browser like Chrome." : "";
       setModalContent("app-modal", "Metamask missing 🦊", modalText, true);
       return;
     }
 
     try {
       iexec = getIexec();
-    } catch (e) {
-      setModalContent(
-        "sendform-modal",
-        "Connection is required ❌",
-        "Please connect your wallet first.",
-        true
-      );
+    }
+    catch (e) {
+      setModalContent("sendform-modal", "Connection is required ❌", "Please connect your wallet first.", true);
       return false;
       console.error(e);
     }
 
+
     const isConnected = connectedAccount && connectedAccount !== "";
     if (!isConnected) {
-      setModalContent(
-        "sendform-modal",
-        "Connection is required ❌",
-        "Please connect your wallet first.",
-        true
-      );
+      setModalContent("sendform-modal", "Connection is required ❌", "Please connect your wallet first.", true);
       return false;
     }
 
-    const hasSelectedFile = selectedFile && selectedFile.length > 0;
+    const hasSelectedFile = selectedFiles && selectedFiles.length > 0;
     if (!hasSelectedFile) {
-      setModalContent(
-        "sendform-modal",
-        "No file selected ❌",
-        "Please choose the file you want to send.",
-        true
-      );
+      setModalContent("sendform-modal", "No file selected ❌", "Please choose the file you want to send.", true);
       return false;
     }
 
     const hasRecipient = addressTo && addressTo.trim().length > 0;
     setAddressTo(addressTo.trim());
     if (!hasRecipient) {
-      setModalContent(
-        "sendform-modal",
-        "Address missing ❌",
-        "Please enter the wallet address where to send the file. ENS is supported",
-        true
-      );
+      setModalContent("sendform-modal", "Address missing ❌", "Please enter the wallet address where to send the file. ENS is supported", true);
       return false;
     }
 
@@ -173,33 +113,57 @@ const SendForm = () => {
     console.log("isValidAddress", isValidAddress);
     if (!isValidAddress) {
       resolvedAddressTo = await iexec.ens.resolveName(addressTo);
-      if (
-        undefined == resolvedAddressTo ||
-        null == resolvedAddressTo ||
-        resolvedAddressTo.trim() == ""
-      ) {
-        setModalContent(
-          "sendform-modal",
-          "Invalid address ❌",
-          `Address ${addressTo} is not recognised. The value is not a valid ethereum address and no matching ENS item could be found.`,
-          true
-        );
+      if (undefined == resolvedAddressTo || null == resolvedAddressTo || resolvedAddressTo.trim() == "") {
+        setModalContent("sendform-modal", "Invalid address ❌", `Address ${addressTo} is not recognised. The value is not a valid ethereum address and no matching ENS item could be found.`, true);
         return false;
       }
-    } else {
-      resolvedAddressTo = addressTo;
+    }
+    else {
+      resolvedAddressTo = addressTo
     }
 
     return true;
-  };
+  }
+
+
 
   const publishFile = async () => {
-    let metaData = await uploadFileToIpfs(selectedFile);
+
+    
+    // Split the file in bite size chunks and upload to Ipfs
+    let metaData = await uploadFileToIpfs(selectedFiles[0]);
+
+
+    if (metaData) {
+      // Create a iExec dataset with the file meta
+      let encryptionResult = await encryptDataset(metaData);
+      console.log("encryptionResult", encryptionResult)  ;
+      if (encryptionResult) {
+        var datasetIpfsUrl = await uploadData(encryptionResult.encryptedDataset);
+          let datasetName =  generateDatasetName(connectedAccount) ;
+          const checksum = await generateEncryptedFileChecksum(encryptionResult.encryptedDataset);
+          let datasetAddress = await deployDataset(datasetName, datasetIpfsUrl,checksum) ; 
+          if (datasetAddress)
+          {
+            await pushSecret(datasetAddress, encryptionResult.datasetEncryptionKey);
+            const isSecretPushed = await iexec.dataset.checkDatasetSecretExists(datasetAddress);
+            if (isSecretPushed)
+            {
+              await pushOrder(datasetAddress);
+            }
+          }
+      }
+
+    }
+
+
     await downloadFile(metaData);
 
     //let jsonData = JSON.stringify(metaData) ;
     //encryptDataset(metaData) ;
-  };
+  }
+
+
 
   return (
     <>
@@ -308,7 +272,7 @@ const SendForm = () => {
               <option value="ebook">E-book</option>
               <option value="software">Software</option>
               <option value="game">Game</option>
-              <option value="other">Other file</option>
+              <option value="other">Other</option>
             </select>
 
             <textarea

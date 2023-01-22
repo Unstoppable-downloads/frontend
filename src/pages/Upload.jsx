@@ -28,17 +28,6 @@ function Home() {
   // Defining key
   const key = crypto.randomBytes(32);
 
-
-  function getCreditClassName()
-  {
-    if (!creativeMode) return "credits-darkbg" ;
-
-    if ( backgroundIsLight ) return "credits-lightbg"; 
-    
-    return "credits-darkbg"; 
-  }
-
-
   return (
     <>
       <Helmet>
