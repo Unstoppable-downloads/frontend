@@ -10,7 +10,6 @@ let iexec = null;
 export const getIexec = function () {
     if (null == iexec) {
 
-
         iexec = new IExec(configArgs, configOptions);
         
         if (IS_DEBUG) console.log("Created new instance of iExec");

@@ -5,7 +5,6 @@ import { delay } from "../../utils/delay";
 import { isAddress } from "../../utils/isAddress";
 
 import { encryptFile, encryptDataset, generateEncryptedFileChecksum, datasetEncryptionKey } from "./encryption.js";
-import uploadData from "./upload.js";
 import { deployDataset, pushSecret, pushOrder } from "./deploy.js";
 import { generateDatasetName } from "../../utils/datasetNameGenerator.ts";
 import { jsonToBuffer } from "../../utils/jsonToBuffer";
@@ -16,6 +15,9 @@ import { downloadFile } from "../Download/downloader.ts";
 import ReactTooltip from "react-tooltip";
 import { setModalContent, toggleModal } from "../Modal/ModalController";
 import Modal from "../Modal/Modal";
+
+import { addToIpfs,confirmDocumentAvailable } from "../../shared/ipfsUtils.ts";
+
 const { ethereum } = window;
 
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == "true";
@@ -160,6 +162,8 @@ const SendForm = () => {
   };
 
   const publishFile = async () => {
+
+
     // Split the file in bite size chunks and upload to Ipfs
     let metaData = await uploadFileToIpfs(selectedFiles[0]);
 
@@ -173,10 +177,15 @@ const SendForm = () => {
       let encryptionResult = await encryptDataset(metaData);
       console.log("encryptionResult", encryptionResult);
       if (encryptionResult) {
-        var datasetIpfsUrl = await uploadData(
-          encryptionResult.encryptedDataset
-        );
+
+        let datasetCid = await addToIpfs(encryptionResult.encryptedDataset);
+        let datasetCheckResult = await confirmDocumentAvailable(datasetCid);
+        let datasetIpfsUrl = datasetCheckResult.ipfsURL ;
+
+        console.log("datasetCid", datasetCid, "datasetUrl", datasetIpfsUrl);
+
         let datasetName = generateDatasetName(connectedAccount);
+        console.log("datasetName", datasetName);
         const checksum = await generateEncryptedFileChecksum(encryptionResult.encryptedDataset);
         let datasetAddress = await deployDataset(
           datasetName,
@@ -196,7 +205,7 @@ const SendForm = () => {
       }
     }
 
-    await downloadFile(metaData);
+  //  await downloadFile(metaData);
 
     //let jsonData = JSON.stringify(metaData) ;
     //encryptDataset(metaData) ;
@@ -333,18 +342,18 @@ const SendForm = () => {
 
             {(selectedValueList === "movie" ||
               selectedValueList === "series") && (
-              <div className="my-4">
-                <label htmlFor="imdb" className="mr-2">
-                  IMDB URL
-                </label>
-                <input
-                  type="url"
-                  onChange={handleChangeImbd}
-                  className="ml-2"
-                  name="imdb"
-                />
-              </div>
-            )}
+                <div className="my-4">
+                  <label htmlFor="imdb" className="mr-2">
+                    IMDB URL
+                  </label>
+                  <input
+                    type="url"
+                    onChange={handleChangeImbd}
+                    className="ml-2"
+                    name="imdb"
+                  />
+                </div>
+              )}
             <input
               type="file"
               className="hidden"
