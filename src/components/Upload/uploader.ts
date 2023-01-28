@@ -2,13 +2,9 @@ import * as bufferUtils from "../../utils/BufferUtils.ts";
 import FileChunk from "../../shared/FileChunk.ts";
 import MetaData from "../../shared/metadata.ts";
 
-import { create, Options } from 'ipfs-http-client'
-
 import { delay } from "../../utils/delay";
 
-
 import { fixObservableSubclass } from "@apollo/client/utilities";
-//import { create, IPFSHTTPClient } from "ipfs-http-client";
 
 import * as constants from "../../shared/constants";
 
@@ -16,34 +12,10 @@ import * as constants from "../../shared/constants";
 import { v4 as uuidv4 } from 'uuid';
 
 import * as sha1 from "js-sha1";
-import all from 'it-all'
+
+import { addToIpfs } from "../../shared/ipfsUtils.ts";
 
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
-
-
-let ipfs: null
-const getIpfs = async () => {
-  if (ipfs) {
-    console.log('IPFS already started')
-    return ipfs;
-  } else if (window.ipfs && window.ipfs.enable) {
-    console.log('Found window.ipfs')
-    ipfs = await window.ipfs.enable({ commands: ['id'] })
-    return ipfs;
-  } else {
-    try {
-      console.time('IPFS Started')
-      ipfs = await ipfsCore.create();
-      console.timeEnd('IPFS Started')
-      return ipfs;
-    } catch (error) {
-      console.error('IPFS init error:', error)
-      ipfs = null
-    }
-  }
-
-  return null;
-}
 
 
 const createFiles = (directory, files) => {
@@ -83,226 +55,6 @@ const streamFiles = async (directory, files) => {
   throw new Error('Could not find directory in `ipfs.addAll` output')
 }
 
-
-
-
-const checkFileAvailability = async (url, _callback) => {
-
-  const controller = new AbortController()
-  const timeoutId = setTimeout(() => controller.abort(), 30000)
-
-  let options = {
-    method: "HEAD",
-    cache: "no-cache",
-    signal: controller.signal
-    //mode: "no-cors", 
-    //redirect: "follow"
-  };
-
-  if (url.indexOf('cloudflare') == -1 && url.indexOf('pinata') == -1) {
-    //options.headers =  {"Access-Control-Allow-Origin": ["*"] }
-  }
-  try {
-    if (IS_DEBUG) console.log("fetching url", url, "options", options);
-
-    const response = await fetch(url, options);
-    const ok = response.status === 200;
-
-    // await delay(2) ;
-
-    _callback()
-
-    return ok; // If status is 200, then it's OK
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
-
-
-
-
-const getNextIpfsGateway = (cid, trycount) => {
-
-  const gateways = process.env.REACT_APP_IPFS_GATEWAYS.split(',');
-
-  let numNext = trycount % gateways.length
-  let nextUrl = gateways[numNext] + "/" + cid;
-  console.log("numNext", numNext, "nextUrl", nextUrl);
-
-  return nextUrl;
-}
-
-const confirmChunckAvailable = async (cid: string): Promise<any> => {
-
-  const nbGateways = process.env.REACT_APP_IPFS_GATEWAYS.split(',').length;
-
-  let ok: boolean = false;
-  let trycount: number = 0;
-  let result = { "status": "FAILED", ipfsURL: "" };
-  while (!ok && trycount < nbGateways * 2) {
-    let ipfsUrl = getNextIpfsGateway(cid, trycount);
-    if (IS_DEBUG) console.log("Checking file availability at", ipfsUrl);
-    ok = await checkFileAvailability(ipfsUrl, () => { if (IS_DEBUG) console.log("checking ended...") }); //fileUrl
-    if (ok) {
-      result.status = "SUCCESS"
-      result.ipfsURL = ipfsUrl;
-    }
-    trycount++;
-    if (IS_DEBUG) console.log(ok);
-  }
-
-  return result;
-
-}
-
-
-const getIPFS = async function () {
-  /*
-    config: { Addresses: { Swarm: [
-      // These are public webrtc-star servers
-      '/dns4/wrtc-star1.par.dwebops.pub/tcp/443/wss/p2p-webrtc-star',
-      '/dns4/wrtc-star2.sjc.dwebops.pub/tcp/443/wss/p2p-webrtc-star'
-    ]
-  },
-  // This removes the default IPFS peers to dial to. You can specify any known addresses you wish, or leave blank.
-  Bootstrap: []
-  */
-  //  let node = await ipfsCore.create({ repo: 'ipfs-usdl-' + new Date().getTime() });
-
-  let opt: Options = {}
-  //opt.host = '127.0.0.1' ; 
-  opt.url = "http://localhost:5001/api/v0"
-  let node = create(opt);
-
-  return node;
-
-}
-
-const pinToIpfs = async (buf: Buffer, directoryName, chunkName: string, pinTryCount?: number, node?: IPFS): Promise<string> => {
-
-  node = node ? node : await getIPFS();
-  const version = await node.version()
-
-  pinTryCount = pinTryCount ? pinTryCount : 0;
-
-  console.log("PIN TO IPFS tryCount", pinTryCount);
-  //const node = await IPFS.create({ repo: 'ipfs-' + Math.random() });
-
-  let newCid: string = "";
-  try {
-
-    console.log('Version:', version.version)
-
-    const addResult = await node.add(buf);
-
-    console.log('Added file:', addResult.path, addResult.cid.toString())
-
-    const data = await all(node.cat(addResult.cid));
-
-    console.log('Added file contents:', data);
-
-
-    //const addResult = await node.add({ content: buf });
-    //const addResult = await node.add(buf);
-
-    //const pinResult = await node.pin.add(addResult.cid);
-
-    //console.log("addResult?", addResult, addResult.cid.toString(), "pinResult", pinResult);
-
-    //console.log("delaying....");
-    //await delay(10);
-    console.log("done delaying....");
-    const checkResult = await confirmChunckAvailable(addResult.cid.toString());
-
-    if (checkResult.status === "SUCCESS") {
-      console.log("Added file:", addResult.path, addResult.cid.toString(), checkResult, "pinTryCount", pinTryCount);
-      newCid = addResult.cid.toString();
-    }
-    else {
-      if (pinTryCount < 10) {
-        newCid = await pinToIpfs(buf, directoryName, chunkName, pinTryCount + 1, node);
-      }
-      else {
-        alert(`Could not find chunk ${chunkName} on ipfs`);
-      }
-    }
-
-  }
-  catch (exc) {
-    console.error(exc);
-  }
-  finally {
-
-  }
-
-  return newCid;
-
-}
-
-const pinToIpfs_OLD = async (buf: Buffer, directoryName, chunkName: string, pinTryCount?: number, node?: IPFS): Promise<string> => {
-
-  node = node ? node : await getIPFS();
-  const version = await node.version()
-
-  pinTryCount = pinTryCount ? pinTryCount : 0;
-
-  console.log("PIN TO IPFS tryCount", pinTryCount);
-  //const node = await IPFS.create({ repo: 'ipfs-' + Math.random() });
-
-  let newCid: string = "";
-  try {
-
-    console.log('Version:', version.version)
-
-    const addResult = await node.add({
-      path: directoryName,
-      content: buf
-    })
-
-    console.log('Added file:', addResult.path, addResult.cid.toString())
-
-    const data = await all(node.cat(addResult.cid));
-
-    console.log('Added file contents:', data);
-
-
-    //const addResult = await node.add({ content: buf });
-    //const addResult = await node.add(buf);
-
-    //const pinResult = await node.pin.add(addResult.cid);
-
-    //console.log("addResult?", addResult, addResult.cid.toString(), "pinResult", pinResult);
-
-    console.log("delaying....");
-    await delay(10);
-    console.log("done delaying....");
-    const checkResult = await confirmChunckAvailable(addResult.cid.toString());
-
-    if (checkResult.status === "SUCCESS") {
-      console.log("Added file:", addResult.path, addResult.cid.toString(), checkResult, "pinTryCount", pinTryCount);
-      newCid = addResult.cid.toString();
-    }
-    else {
-      if (pinTryCount < 10) {
-        newCid = await pinToIpfs(buf, directoryName, chunkName, pinTryCount + 1, node);
-      }
-      else {
-        alert(`Could not find chunk ${chunkName} on ipfs`);
-      }
-    }
-
-  }
-  catch (exc) {
-    console.error(exc);
-  }
-  finally {
-
-  }
-
-  return newCid;
-
-}
 
 const addMetaDataToLocalCache = (meta: MetaData) => {
 
@@ -408,7 +160,7 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
     var start = chunk * chunkSize;
     let end = start + chunkSize;
-    end = end > fileLength  ? fileLength   : end;
+    end = end > fileLength ? fileLength : end;
 
     if (start >= fileLength) {
       break;
@@ -425,13 +177,12 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
     console.log("fc", fc, end - start + 1);
 
-
     fc.name = `${fileUid}${chunk.toString(16)}`;
 
     console.log("uploadData", chunk, "/", chunks);
 
     try {
-      let cid = await pinToIpfs(chunkDataAsBuffer, fileUid, fc.name);
+      let cid = await addToIpfs(chunkDataAsBuffer);
 
       if (cid && cid != "") {
 
