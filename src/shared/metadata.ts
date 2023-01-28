@@ -6,6 +6,6 @@ export default class MetaData{
     fileSize: number
     chunks: Array<FileChunk>
     hash: string
-    categories: Array<string>,
+    categories: Array<string>
     description: string
 }
