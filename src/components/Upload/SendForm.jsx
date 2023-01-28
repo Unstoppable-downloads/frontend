@@ -126,9 +126,7 @@ const SendForm = () => {
   }
 
 
-
   const publishFile = async () => {
-
     
     // Split the file in bite size chunks and upload to Ipfs
     let metaData = await uploadFileToIpfs(selectedFiles[0]);
