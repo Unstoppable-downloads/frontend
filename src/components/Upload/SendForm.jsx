@@ -5,6 +5,7 @@ import { delay } from "../../utils/delay";
 import { isAddress } from "../../utils/isAddress";
 
 import { encryptFile, encryptDataset, generateEncryptedFileChecksum, datasetEncryptionKey } from "./encryption.js";
+import uploadData from "./upload.js";
 import { deployDataset, pushSecret, pushOrder } from "./deploy.js";
 import { generateDatasetName } from "../../utils/datasetNameGenerator.ts";
 import { jsonToBuffer } from "../../utils/jsonToBuffer";
@@ -28,6 +29,9 @@ const SendForm = () => {
   const { isLoading, setIsLoading, addressTo, setAddressTo, step, setStep, price, setPrice, message, setMessage, selectedFiles, setSelectedFiles, checkFileAvailability, setIsAvailable } = useContext(AceContext);
   const inputFile = useRef(null);
   const [isAFile, setIsAFile] = useState(false);
+  const [selectedValueList, setSelectedValueList] = useState("");
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
 
 
   let resolvedAddressTo;
@@ -43,8 +47,15 @@ const SendForm = () => {
   };
 
   const handleChangeList = (e) => {
-    
-  }
+    setSelectedValueList(e.target.value)
+}
+
+const handleChangeDescr = (e) => {
+    setDescription(e.target.value);
+}
+const handleChangeTitle = (e) => {
+    setTitle(e.target.value);
+}
 
   var optimistic = false;
   const handleChecked = () => {
@@ -132,9 +143,7 @@ const SendForm = () => {
   }
 
 
-
   const publishFile = async () => {
-
     
     // Split the file in bite size chunks and upload to Ipfs
     let metaData = await uploadFileToIpfs(selectedFiles[0]);
@@ -169,6 +178,12 @@ const SendForm = () => {
     //encryptDataset(metaData) ;
   }
 
+  useEffect(() => {
+    if (selectedFiles) {
+      console.log(selectedFiles[0])
+      setTitle(selectedFiles[0])
+    }
+  }, [selectedFiles])
 
 
   return (
@@ -283,16 +298,18 @@ const SendForm = () => {
 
             <textarea
               value={description}
+              className="p-2 w-full"
               onChange={handleChangeDescr}
               placeholder="Description"
             />
+
             <div className="flex">
-              <label>Title</label>
+              <label htmlFor="doctitle" className="mr-2">Title</label>
               <input
-                type=""
-              >
-                {selectedFiles[0].name}
-              </input>
+                name="doctitle"
+                onChange={handleChangeTitle}
+                required
+              />
             </div>
             
 
@@ -304,6 +321,7 @@ const SendForm = () => {
                   type="url"
                   onChange={handleChange}
                   className="ml-2"
+                  name="imdb"
                 />
               </div>
             )}
