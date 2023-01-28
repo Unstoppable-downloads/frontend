@@ -25,7 +25,8 @@ export function generateDatasetName(owner: string) {
   const str1 = `${usdl.APP_ADDRESS}`.toLowerCase() ;
 
   const hash = `${hashIt(str1)}`;
-  const name = `${hash}${new Date().getTime().toString()}`
+  const rnd = Math.floor(Math.random() * (12000000 - 100000 + 1)) + 100000
+  const name = `${hash}${new Date().getTime().toString()}${rnd}`
             // file name
   return name;
 }
