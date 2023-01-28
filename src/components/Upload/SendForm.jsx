@@ -57,6 +57,7 @@ const SendForm = () => {
     for (var i = 0; i < selectedFiles.length; i += 1) {
       if (IS_DEBUG) console.log(selectedFiles[i]);
     }
+    setTitle(event.target.files[0].name);
   };
 
   const handleChangeList = (e) => {
@@ -163,7 +164,7 @@ const SendForm = () => {
     let metaData = await uploadFileToIpfs(selectedFiles[0]);
 
     if (metaData) {
-      metaData.title = title;
+      metaData.title = selectedFiles[0].name;
       metaData.imdb = imdb;
       metaData.description = description;
       metaData.categories = selectedValueList;
@@ -201,12 +202,6 @@ const SendForm = () => {
     //encryptDataset(metaData) ;
   };
 
-  useEffect(() => {
-    if (selectedFiles) {
-      console.log(selectedFiles[0]);
-      setTitle(selectedFiles[0]);
-    }
-  }, [selectedFiles]);
 
   return (
     <>
@@ -312,6 +307,7 @@ const SendForm = () => {
               className="my-4 border border-iexblk"
               onChange={(e) => handleChangeList(e)}
             >
+              <option value="">--Please choose an category--</option>
               <option value="music">Music</option>
               <option value="movie">Movie</option>
               <option value="series">Series</option>

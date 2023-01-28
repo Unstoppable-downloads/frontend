@@ -5,7 +5,7 @@ import { AceContext } from '../context/context';
 import crypto from 'crypto-browserify';
 const APP_NAME = process.env.REACT_APP_NAME;
 
-function Home() {
+function Upload() {
   const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, checkFileAvailability, backgroundIsLight } = useContext(AceContext);
 
   
@@ -46,4 +46,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default Upload;
