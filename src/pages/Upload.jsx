@@ -63,7 +63,7 @@ function Home() {
             <div className="credits-container">
               { creativeMode && (
                 <>
-                  <h4 className={getCreditClassName()}><u>Credits</u></h4>
+                  {/* <h4 className={getCreditClassName()}><u>Credits</u></h4>
                
                   {bgCreator && bgCreator.links ? (
                       <><p className={getCreditClassName()}>Author: <a className={getCreditClassName()} href={bgCreator.links.html} target="_blank">{bgCreator.name} ({bgCreator.username})</a></p>
@@ -76,7 +76,7 @@ function Home() {
                   ) : (
                     <div>
                     </div>
-                  )}
+                  )} */}
                 </>
               )}
             </div>

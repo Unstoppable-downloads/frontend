@@ -32,6 +32,8 @@ const SendForm = () => {
 
   let resolvedAddressTo;
 
+  let iexec = getIexec()
+
   const handleChange = (event) => {
     setSelectedFiles([...selectedFiles, event.target.files[0]]);
     setIsAFile(true);
@@ -39,6 +41,10 @@ const SendForm = () => {
       if (IS_DEBUG) console.log(selectedFiles[i]);
     }
   };
+
+  const handleChangeList = (e) => {
+    
+  }
 
   var optimistic = false;
   const handleChecked = () => {
@@ -175,12 +181,12 @@ const SendForm = () => {
               <div>You are uploading:
                 {/* {selectedFile.slice(0, 1).map((file) => { */}
                   {/* return ( */}
-                    <div className="flex items-center" key={selectedFile.name}>
-                      {selectedFile.name}
+                    <div className="flex items-center" key={selectedFiles[0].name}>
+                      {selectedFiles[0].name}
                       <button
                         className="ml-2"
                         onClick={(e) => {
-                          setSelectedFile()
+                          setSelectedFiles()
                           setIsAFile(false)
                         }}
                       >
@@ -280,6 +286,15 @@ const SendForm = () => {
               onChange={handleChangeDescr}
               placeholder="Description"
             />
+            <div className="flex">
+              <label>Title</label>
+              <input
+                type=""
+              >
+                {selectedFiles[0].name}
+              </input>
+            </div>
+            
 
             {(selectedValueList === "movie" ||
               selectedValueList === "series") && (
