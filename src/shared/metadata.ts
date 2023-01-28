@@ -1,3 +1,4 @@
+import FileChunk from "./FileChunk";
 
 export default class MetaData {
     title: string
@@ -6,7 +7,7 @@ export default class MetaData {
     fileSize: number
     chunks: Array<FileChunk>
     hash: string
-    imdb:string
+    imdb: string
     categories: Array<string>
     description: string
 }

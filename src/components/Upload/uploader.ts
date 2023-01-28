@@ -372,10 +372,10 @@ const readFile = async (file: File): Promise<any> => {
 };
 
 /**
- * Split the file into n pa
- * @param fileBuffer 
+ * Split the file into n parts
+ * @param  
  */
-export async function uploadFileToIpfs(file: File): Promise<MetaData[]> {
+export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
   const readResult: any = await readFile(file);
 
@@ -465,8 +465,5 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData[]> {
 
   return meta;
 }
-
-
-
 
 
