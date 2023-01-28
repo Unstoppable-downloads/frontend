@@ -7,7 +7,6 @@ const APP_NAME = process.env.REACT_APP_NAME;
 
 function Upload() {
   const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, checkFileAvailability, backgroundIsLight } = useContext(AceContext);
-
   
 
   const [message, setMessage] = useState("")
