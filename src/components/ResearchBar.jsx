@@ -7,6 +7,12 @@ const APP_NAME = process.env.REACT_APP_NAME;
 
 const ResearchBar = () => {
   const { setIsSearching } = useContext(AceContext);
+  const [searchSelectedCategories, addSearchSelectedCategories] = useState([]);
+  
+
+  const handleToggle = (e) => {
+    
+  }
 
   return (
     <>
