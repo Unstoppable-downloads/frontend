@@ -32,6 +32,7 @@ export const AceProvider = ({ children }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [datasetUrl, setDatasetUrl] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [searchTerms, setsearchTerms] = useState("")
 
 
 
@@ -238,7 +239,9 @@ export const AceProvider = ({ children }) => {
         backgroundIsLight,
         setBackgroundIsLight,
         isSearching,
-        setIsSearching
+        setIsSearching,
+        searchTerms,
+        setsearchTerms
       }}
     >
       {children}

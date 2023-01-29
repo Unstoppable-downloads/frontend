@@ -6,7 +6,7 @@ const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
-  const { isSearching } = useContext(AceContext);
+  const { isSearching, searchTerms, setsearchTerms } = useContext(AceContext);
 
   return (
     <>

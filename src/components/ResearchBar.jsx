@@ -3,13 +3,15 @@ import { Helmet } from "react-helmet";
 import SendForm from "../components/Upload/SendForm";
 import { AceContext } from "../context/context";
 import crypto from "crypto-browserify";
+import searchData from "../shared/searchData";
+
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const ResearchBar = () => {
-  const { setIsSearching } = useContext(AceContext);
+  const { setIsSearching, searchTerms, setsearchTerms } = useContext(AceContext);
   const [searchSelectedCategories, addSearchSelectedCategories] = useState([]);
+  const [files, setFiles] = useState({})
   
-
   const handleToggle = (e) => {
     
   }
@@ -18,9 +20,10 @@ const ResearchBar = () => {
     <>
       <form
         className="w-full px-4"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           setIsSearching(true);
+          console.log(await searchData(searchTerms, ["", ""], 100))
         }}
       >
         <div className="relative py-4">
@@ -42,6 +45,7 @@ const ResearchBar = () => {
             type="text"
             placeholder="Search"
             className="h-32 w-full rounded-l-full rounded-r-full border bg-iexwhite py-3 pl-12 pr-4 text-3xl text-iexblk outline-none focus:border-iexyellow focus:bg-iexwhite"
+            onChange={(e) => {setsearchTerms(e.target.value)}}
           />
         </div>
         <div className="mx-auto flex items-center justify-center py-4 text-xl">
