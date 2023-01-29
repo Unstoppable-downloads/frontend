@@ -69,7 +69,6 @@ const addMetaDataToLocalCache = (meta: MetaData) => {
   tempStorageItems.push(meta);
 
   storage.setItem("USDL_TMP", JSON.stringify(tempStorageItems));
-
 }
 
 
@@ -216,5 +215,4 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
   return meta;
 }
-
 

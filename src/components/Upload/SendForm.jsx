@@ -75,12 +75,6 @@ const SendForm = () => {
     setImdb(e.target.value);
   };
 
-  var optimistic = false;
-  const handleChecked = () => {
-    const checkbox = document.getElementById("optimistic");
-    if (IS_DEBUG) console.log(checkbox.checked);
-    optimistic = checkbox.checked;
-  };
 
   var setInprogress = () => {
     document.getElementById("btn-transfer").classList.add("btn-inverted");
@@ -364,33 +358,6 @@ const SendForm = () => {
           </div>
           <div className="formFooter mx-auto items-center p-4">
             <ReactTooltip multiline="true" />
-
-            <div className="optimisticContainer mb-4">
-              <input
-                type="checkbox"
-                name="optimistic"
-                id="optimistic"
-                onClick={handleChecked}
-              />
-              <label htmlFor="optimistic" className="ml-2">
-                Optimistic IPFS upload{" "}
-                <svg
-                  data-tip="Activate this setting to speedup the upload process.<br/>By default, the system will ensure that the file is available on IPFS before proceeding to the next step."
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="inlineText h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
-                  />
-                </svg>
-              </label>
-            </div>
 
             <div className="mx-4 rounded-lg bg-iexblk">
               <button
