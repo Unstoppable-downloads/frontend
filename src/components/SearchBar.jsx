@@ -8,23 +8,29 @@ import searchData from "../shared/searchData";
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const SearchBar = () => {
-  const { setIsSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched } = useContext(AceContext);
+  const {
+    setIsSearching,
+    searchTerms,
+    setsearchTerms,
+    filesSearched,
+    setFilesSearched,
+  } = useContext(AceContext);
   const [searchSelectedCategories, addSearchSelectedCategories] = useState([]);
-  
-useEffect(() => {
 
-}, [filesSearched])
+  useEffect(() => {}, [filesSearched]);
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    setIsSearching(true);
+    console.log(await searchData(searchTerms, ["", ""], 100));
+    setFilesSearched(await searchData(searchTerms, ["", ""], 100));
+  };
 
   return (
     <>
       <form
         className="w-full px-4"
-        onSubmit={async (e) => {
-          e.preventDefault();
-          setIsSearching(true);
-          console.log(await searchData(searchTerms, ["", ""], 100))
-          setFilesSearched(await searchData(searchTerms, ["", ""], 100))
-        }}
+        onSubmit={async (e) => {await handleOnSubmit(e)}}
       >
         <div className="relative py-4">
           <svg
@@ -45,7 +51,9 @@ useEffect(() => {
             type="text"
             placeholder="Search"
             className="h-32 w-full rounded-l-full rounded-r-full border bg-iexwhite py-3 pl-12 pr-4 text-3xl text-iexblk outline-none focus:border-iexyellow focus:bg-iexwhite"
-            onChange={(e) => {setsearchTerms(e.target.value)}}
+            onChange={(e) => {
+              setsearchTerms(e.target.value);
+            }}
           />
         </div>
         <div className="mx-auto flex items-center justify-center py-4 text-xl">
