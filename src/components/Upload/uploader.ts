@@ -137,12 +137,11 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
   let fileLength = arrayBuffer.byteLength;
   let fileChunks = new Array<FileChunk>();
   let fileUid: string = uuidv4().replaceAll('-', '');
-  console.log("fileUid", fileUid);
 
   let meta = new MetaData();
   meta.fileName = file.name;
   meta.fileSize = arrayBuffer.byteLength;
-  meta.categories = ["PHOTOS"];
+  meta.categories = ["e-book"];
   meta.hash = readResult.hash;
   meta.uid = fileUid;
 
@@ -152,7 +151,7 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
   }
 
   let chunks = Math.ceil(fileLength / chunkSize);
-  console.log("chunks", chunks, "chunkSize", chunkSize, "fileLength", fileLength, "chunks", chunks);
+  //console.log("chunks", chunks, "chunkSize", chunkSize, "fileLength", fileLength, "chunks", chunks);
 
   let chunk = 0;
   while (chunk <= chunks) {
@@ -178,7 +177,6 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
     fc.name = `${fileUid}${chunk.toString(16)}`;
 
-    console.log("uploadData", chunk, "/", chunks);
 
     try {
       let cid = await addToIpfs(chunkDataAsBuffer);
@@ -189,8 +187,9 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
         fc.cid = cid;
 
         fileChunks.push(fc);
+        console.log("uploadData added", chunk, "/", chunks);
 
-        console.log("filechunk", fc);
+        //console.log("filechunk", fc);
 
         //saveFile(chunkDataAsBuffer, fc.name);
         chunk++;

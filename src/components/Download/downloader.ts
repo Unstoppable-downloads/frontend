@@ -50,7 +50,7 @@ const getNextIpfsGateway = (cid, trycount) => {
 
     let numNext = trycount % gateways.length
     let nextUrl = gateways[numNext] + "/" + cid;
-    console.log("numNext", numNext, "nextUrl", nextUrl);
+//    console.log("numNext", numNext, "nextUrl", nextUrl);
 
     return nextUrl;
 }

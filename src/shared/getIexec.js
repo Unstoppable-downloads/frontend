@@ -15,7 +15,7 @@ export const getIexec = function () {
         if (IS_DEBUG) console.log("Created new instance of iExec");
     }
     else {
-        if (IS_DEBUG) console.log("Re-using iexec ");
+        //if (IS_DEBUG) console.log("Re-using iexec ");
     }
 
     return iexec;

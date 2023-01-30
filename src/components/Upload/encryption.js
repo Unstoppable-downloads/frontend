@@ -55,7 +55,7 @@ const encryptFile = async (selectedFile) => {
 const encryptDataset = async (metaData: MetaData) => {
   let iexec = getIexec();
   let datasetEncryptionKey = iexec.dataset.generateEncryptionKey();
-  if (IS_DEBUG) console.log("DATASET encryption key tostring:", fileEncKey.toString());
+  // if (IS_DEBUG) console.log("DATASET encryption key tostring:", fileEncKey.toString());
   // console.log("FILE encryption buffer:", Buffer.from(fileEncKey));
 
   var datasetContent = JSON.stringify(metaData);

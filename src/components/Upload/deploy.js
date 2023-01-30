@@ -42,7 +42,7 @@ const pushSecret = async(datasetAddress, datasetEncryptionKey) => {
     try {
         let iexec = getIexec();
         const pushed = await iexec.dataset.pushDatasetSecret(datasetAddress, datasetEncryptionKey);
-        if (IS_DEBUG) console.log("Secret pushed ", pushed);
+        if (IS_DEBUG) console.log("Secret pushed ", pushed, "datasetEncryptionKey", datasetEncryptionKey, "datasetAddress", datasetAddress);
     } catch (err) {
         console.error(err);
     }
@@ -61,7 +61,9 @@ const pushOrder = async(datasetAddress) => {
             dataset: datasetAddress,
             volume: 10000000,
             tag: "tee",
-            apprestrict: usdl.APP_ADDRESS
+            apprestrict: usdl.APP_ADDRESS, 
+            requesterrestrict: "0x98348beFA3bb86DE5Bcdd6cdBeBc52933166ca18"
+
         })
         const signedOrder = await iexec.order.signDatasetorder(orderTemplate)
         if (IS_DEBUG) console.log("Signed order", signedOrder)
