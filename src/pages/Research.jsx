@@ -1,12 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AceContext } from "../context/context";
-import ResearchBar from "../components/ResearchBar";
+import SearchBar from "../components/SearchBar";
+import {sizeToReadableSize} from "../utils/sizeToReadableSize";
 const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
-  const { isSearching, searchTerms, setsearchTerms } = useContext(AceContext);
+  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched } = useContext(AceContext);
+
+  useEffect(() => {
+
+  }, [filesSearched])
 
   return (
     <>
@@ -17,11 +22,11 @@ function Research() {
         <div className="relative mx-m flex w-3/4 flex-col py-m">
           {isSearching ? (
             <div className="mb-12 flex w-full">
-              <ResearchBar />
+              <SearchBar />
             </div>
           ) : (
             <div className="flex w-full">
-              <ResearchBar />
+              <SearchBar />
             </div>
           )}
 
@@ -37,19 +42,42 @@ function Research() {
                   <th className="px-8 text-center">&nbsp;</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="text-center">
-                  <td colSpan={6}>No sent item found.</td>
-                </tr>
-              </tbody>
+              {filesSearched.length > 0 ? (
+                <tbody>
+                  {filesSearched.map((file, i) => {
+                    return (
+                      <tr className="text-center" key={i}>
+                        <td>{file.title}</td>
+                        <td>{file.fileName}</td>
+                        <td>
+                          {file.categories.map((category, j) => {
+                            return <span key={j}>{category}, </span>;
+                          })}
+                        </td>
+                        <td>{sizeToReadableSize(file.fileSize)[0]} {sizeToReadableSize(file.fileSize)[1]}</td>
+                        <td>{file.nbDownloads}</td>
+                        <td>
+                          <button className="btn h-6">Download</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              ) : (
+                <tbody>
+                  <tr class="text-center">
+                    <td colSpan={6}>No sent item found.</td>
+                  </tr>
+                </tbody>
+              )}
             </table>
           )}
           <div className="text-iexwhite"></div>
         </div>
         <aside>
-          <div className="flex flex-col bg-sidebar w-max">
+          <div className="flex w-max flex-col bg-sidebar">
             <div className="w-full">
-                <h4 className="text-xl">Recent Uploads</h4>
+              <h4 className="text-xl">Recent Uploads</h4>
             </div>
           </div>
         </aside>

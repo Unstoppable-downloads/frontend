@@ -32,7 +32,9 @@ export const AceProvider = ({ children }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [datasetUrl, setDatasetUrl] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [searchTerms, setsearchTerms] = useState("")
+  const [searchTerms, setsearchTerms] = useState("");
+  const [filesSearched, setFilesSearched] = useState({});
+
 
 
 
@@ -241,7 +243,9 @@ export const AceProvider = ({ children }) => {
         isSearching,
         setIsSearching,
         searchTerms,
-        setsearchTerms
+        setsearchTerms,
+        filesSearched,
+        setFilesSearched
       }}
     >
       {children}

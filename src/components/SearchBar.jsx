@@ -1,20 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import SendForm from "../components/Upload/SendForm";
+import SendForm from "./Upload/SendForm";
 import { AceContext } from "../context/context";
 import crypto from "crypto-browserify";
 import searchData from "../shared/searchData";
 
 const APP_NAME = process.env.REACT_APP_NAME;
 
-const ResearchBar = () => {
-  const { setIsSearching, searchTerms, setsearchTerms } = useContext(AceContext);
+const SearchBar = () => {
+  const { setIsSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched } = useContext(AceContext);
   const [searchSelectedCategories, addSearchSelectedCategories] = useState([]);
-  const [files, setFiles] = useState({})
   
-  const handleToggle = (e) => {
-    
-  }
+useEffect(() => {
+
+}, [filesSearched])
 
   return (
     <>
@@ -24,6 +23,7 @@ const ResearchBar = () => {
           e.preventDefault();
           setIsSearching(true);
           console.log(await searchData(searchTerms, ["", ""], 100))
+          setFilesSearched(await searchData(searchTerms, ["", ""], 100))
         }}
       >
         <div className="relative py-4">
@@ -139,4 +139,4 @@ const ResearchBar = () => {
   );
 };
 
-export default ResearchBar;
+export default SearchBar;
