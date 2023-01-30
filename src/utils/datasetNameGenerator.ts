@@ -1,7 +1,7 @@
 import * as usdl from "../shared/constants";
 import { createHash } from "crypto-browserify";
 
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === 'true';
 
 const hashIt = (str)=>{
   return createHash('sha256').update(str).digest('hex');

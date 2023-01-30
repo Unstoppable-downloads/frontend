@@ -31,6 +31,13 @@ export const AceProvider = ({ children }) => {
   const [step, setStep] = useState("");
   const [isAvailable, setIsAvailable] = useState(false);
   const [datasetUrl, setDatasetUrl] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchTerms, setsearchTerms] = useState("");
+  const [filesSearched, setFilesSearched] = useState({});
+
+
+
+
   const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
 
   const auth = "Basic " + Buffer.from(
@@ -232,7 +239,13 @@ export const AceProvider = ({ children }) => {
         pushOrder,
         getNextIpfsGateway,
         backgroundIsLight,
-        setBackgroundIsLight
+        setBackgroundIsLight,
+        isSearching,
+        setIsSearching,
+        searchTerms,
+        setsearchTerms,
+        filesSearched,
+        setFilesSearched
       }}
     >
       {children}

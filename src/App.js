@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Helmet from "react-helmet";
 import Modal from "./components/Modal/Modal" ;
 import {toggleModal} from "./components/Modal/ModalController" ;
+import Research from "./pages/Research";
 
 function App() {
   const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode } = useContext(AceContext);
@@ -92,11 +93,17 @@ function App() {
                     </Protected>
                   }
                 />
+                <Route
+                  path="/research"
+                  element={
+                    <Protected isLoggedIn={isConnected}>
+                      <Research />
+                    </Protected>
+                  }
+                />
               </Routes>
             </main>
           </div>
-          
-
         </div>
         <Footer />
       </Router>
