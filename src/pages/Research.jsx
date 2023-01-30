@@ -58,7 +58,7 @@ function Research() {
                         <td>{sizeToReadableSize(file.fileSize)[0]} {sizeToReadableSize(file.fileSize)[1]}</td>
                         <td>{file.nbDownloads}</td>
                         <td>
-                          <button className="btn h-6">Download</button>
+                          <button className="btn h-6"><a href="#">Details</a></button>
                         </td>
                       </tr>
                     );
