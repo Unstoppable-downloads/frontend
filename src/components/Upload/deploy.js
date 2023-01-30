@@ -57,18 +57,25 @@ const pushOrder = async(datasetAddress) => {
     try {
         let iexec = getIexec();
 
+        console.log("CREATE DATASET ORDER") ;
         const orderTemplate = await iexec.order.createDatasetorder({
             dataset: datasetAddress,
             volume: 10000000,
             tag: "tee",
             apprestrict: usdl.APP_ADDRESS
 
-        })
+        }) ;
+
+        console.log("SIGNING DATASET ORDER") ;
+
         const signedOrder = await iexec.order.signDatasetorder(orderTemplate)
         if (IS_DEBUG) console.log("Signed order", signedOrder)
-        const pushedOrder = await iexec.order.publishDatasetorder(signedOrder)
+
+        console.log("PUBLISHING DATASET ORDER") ;
+        const pushedOrder = await iexec.order.publishDatasetorder(signedOrder);
         if (IS_DEBUG) console.log(pushedOrder);
 
+       /* console.log("PUBLISHING DATASET ORDER") ;
         const foundorders = await iexec.orderbook.fetchDatasetOrderbook(
             datasetAddress, {
                 app: usdl.APP_ADDRESS,
@@ -77,7 +84,7 @@ const pushOrder = async(datasetAddress) => {
                 maxTag: usdl.TEE_TAG
             }
         );
-        if (IS_DEBUG) console.log("dataset foundorders", foundorders);
+        if (IS_DEBUG) console.log("dataset foundorders", foundorders); */
 
     } catch (err) {
         console.log(err)
