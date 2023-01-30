@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { AceContext } from "../context/context";
 import SearchBar from "../components/SearchBar";
 import {sizeToReadableSize} from "../utils/sizeToReadableSize";
+import SideBar from "../components/Sidebar";
 const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
@@ -19,7 +20,7 @@ function Research() {
         <title>{APP_NAME} | Home</title>
       </Helmet>
       <div className="flex">
-        <div className="relative mx-m flex w-3/4 flex-col py-m">
+        <div className="relative mr-m flex w-3/4 flex-col py-m items-center my-auto">
           {isSearching ? (
             <div className="mb-12 flex w-full">
               <SearchBar />
@@ -74,13 +75,13 @@ function Research() {
           )}
           <div className="text-iexwhite"></div>
         </div>
-        <aside>
+        <div>
           <div className="flex w-max flex-col bg-sidebar">
             <div className="w-full">
-              <h4 className="text-xl">Recent Uploads</h4>
+              <SideBar />
             </div>
           </div>
-        </aside>
+        </div>
       </div>
     </>
   );

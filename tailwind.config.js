@@ -11,7 +11,7 @@ module.exports = {
         iexyellow: "#fcd15a",
         iexwhite: "#f1f2f0",
         nav: "#8c8c90",
-        sidebar: "#1e1e22"
+        sidebar: "#18181f"
       },
       spacing: {
         xs: "15px",

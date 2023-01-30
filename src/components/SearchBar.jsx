@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import SendForm from "./Upload/SendForm";
 import { AceContext } from "../context/context";
-import crypto from "crypto-browserify";
-import searchData from "../shared/searchData";
+import { fetchSearchData } from "../shared/searchData";
 
 const APP_NAME = process.env.REACT_APP_NAME;
 
@@ -22,15 +21,17 @@ const SearchBar = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsSearching(true);
-    console.log(await searchData(searchTerms, ["", ""], 100));
-    setFilesSearched(await searchData(searchTerms, ["", ""], 100));
+    console.log(await fetchSearchData(searchTerms, ["", ""], 100));
+    setFilesSearched(await fetchSearchData(searchTerms, ["", ""], 100));
   };
 
   return (
     <>
       <form
         className="w-full px-4"
-        onSubmit={async (e) => {await handleOnSubmit(e)}}
+        onSubmit={async (e) => {
+          await handleOnSubmit(e);
+        }}
       >
         <div className="relative py-4">
           <svg
