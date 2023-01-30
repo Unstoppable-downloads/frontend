@@ -61,8 +61,7 @@ const pushOrder = async(datasetAddress) => {
             dataset: datasetAddress,
             volume: 10000000,
             tag: "tee",
-            apprestrict: usdl.APP_ADDRESS, 
-            requesterrestrict: "0x98348beFA3bb86DE5Bcdd6cdBeBc52933166ca18"
+            apprestrict: usdl.APP_ADDRESS
 
         })
         const signedOrder = await iexec.order.signDatasetorder(orderTemplate)
