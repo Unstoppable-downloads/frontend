@@ -32,7 +32,7 @@ function Upload() {
       <Helmet>
         <title>{APP_NAME} | Home</title>
       </Helmet>
-      <div className="relative flex mx-m py-m">
+      <div className="relative flex mx-auto py-m justify-center">
         <div className="flex">
           <SendForm />
         </div>

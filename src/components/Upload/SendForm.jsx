@@ -210,7 +210,7 @@ const SendForm = () => {
     <>
       <Modal id="sendform-modal" onModalClose={modalCloseHandler} />
       <form>
-        <div className="mr-8 flex w-80 flex-col rounded-2xl bg-iexwhite px-4 py-4 text-iexblk shadow-xl">
+        <div className="mx-auto flex w-full justify-center flex-col rounded-2xl bg-iexwhite px-4 py-8 text-iexblk shadow-xl">
           <div className="uploader">
             {isAFile ? (
               <div>
@@ -267,7 +267,7 @@ const SendForm = () => {
             ) : (
               <div>
                 <button
-                  className="flex w-full items-center border-b border-gray-500 px-4 py-16"
+                  className="flex w-full items-center border-b border-gray-500 px-32 py-16"
                   data-tip="Click here to choose the file to transfer"
                   onClick={(e) => {
                     e.preventDefault();
