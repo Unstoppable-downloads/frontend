@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import SendForm from "./Upload/SendForm";
 import { AceContext } from "../context/context";
@@ -26,7 +27,7 @@ const SideBar = () => {
             <>
                 {recentFiles.map((file, i) => {
                     return (
-                        <div key={i} className="text-iexyellow my-3">{file.fileName}</div>
+                      <NavLink to={{pathname: `/search/details/${file.uid}-${file.fileName}`}} relative="route"><div key={i} className="text-iexyellow my-3">{file.fileName}</div></NavLink>
                     )
                 })}
             </>

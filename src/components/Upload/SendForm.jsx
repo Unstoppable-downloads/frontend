@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import { AceContext } from "../../context/context";
-import * as ace from "../../shared/constants";
 import { delay } from "../../utils/delay";
 import { isAddress } from "../../utils/isAddress";
 
@@ -267,7 +266,7 @@ const SendForm = () => {
             ) : (
               <div>
                 <button
-                  className="flex w-full items-center border-b border-gray-500 px-32 py-16"
+                  className="flex w-full items-center border-b border-gray-500 px-4 py-16"
                   data-tip="Click here to choose the file to transfer"
                   onClick={(e) => {
                     e.preventDefault();

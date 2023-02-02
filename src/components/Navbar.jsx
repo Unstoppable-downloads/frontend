@@ -46,9 +46,6 @@ const NavBar = () => {
                 </li>
                 <li>
                 {connectedAccount ? (<NavLink to="/sent" relative="path">Sent</NavLink> ): (<span onClick={showModalNotConnected}>Sent</span>)}
-                </li>                
-                <li>
-                {connectedAccount ? (<NavLink to="/research" relative="path">Research</NavLink> ): (<span onClick={showModalNotConnected}>Research</span>)}
                 </li>
                 <li></li>
               </ul>
