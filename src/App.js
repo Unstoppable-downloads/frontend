@@ -93,11 +93,9 @@ function App() {
                     </Protected>
                   }
                 />
-                <Route path="/search">
-                  <Route path="" element={<Research />} />
-                  <Route path="details">
-                    <Route path=":uid-:filename" element={<Details />} />
-                  </Route>
+                <Route exact path="/search">
+                  <Route exact path="" element={<Research />} />
+                  <Route exact path="details/*" element={<Details />} />
                 </Route>
               </Routes>
             </main>

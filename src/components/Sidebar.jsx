@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Routes, Route, NavLink } from "react-router-dom";
 import SendForm from "./Upload/SendForm";
+import Details from "../pages/Search/details";
 import { AceContext } from "../context/context";
 import { fetchRecentData } from "../shared/searchData";
 
@@ -12,8 +12,8 @@ const SideBar = () => {
 
   useEffect(() => {
     const updatefiles = async () => {
-        setRecentFiles(await fetchRecentData())
-    }
+      setRecentFiles(await fetchRecentData());
+    };
     updatefiles();
   }, []);
 
@@ -21,19 +21,29 @@ const SideBar = () => {
     <>
       <aside>
         <div className="flex flex-col px-4">
-          <h3 className="text-xl my-8">Recent Uploads</h3>
+          <h3 className="my-8 text-xl">Recent Uploads</h3>
           {console.log(recentFiles)}
           {recentFiles && (
             <>
-                {recentFiles.map((file, i) => {
-                    return (
-                      <NavLink to={{pathname: `/search/details/${file.uid}-${file.fileName}`}} relative="route"><div key={i} className="text-iexyellow my-3">{file.fileName}</div></NavLink>
-                    )
-                })}
+              {recentFiles.map((file, i) => {
+                return (
+                  <NavLink
+                    to={`/search/details/${file.uid}-${file.fileName}`}
+                    relative="path"
+                  >
+                    <div key={i} className="my-3 text-iexyellow">
+                      {file.fileName}
+                    </div>
+                  </NavLink>
+                );
+              })}
             </>
           )}
         </div>
       </aside>
+      <Routes>
+        <Route path="search/details/:uid-:fileName" element={<Details />} />
+      </Routes>
     </>
   );
 };
