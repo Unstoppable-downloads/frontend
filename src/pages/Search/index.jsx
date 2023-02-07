@@ -8,11 +8,12 @@ const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
-  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched } = useContext(AceContext);
+  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile } = useContext(AceContext);
 
   useEffect(() => {
 
   }, [filesSearched])
+  useEffect(() => {setDetailFile()})
 
   return (
     <>

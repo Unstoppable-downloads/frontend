@@ -9,6 +9,7 @@ const APP_NAME = process.env.REACT_APP_NAME;
 
 const SideBar = () => {
   const [recentFiles, setRecentFiles] = useState();
+  const {detailFile, setDetailFile} = useContext(AceContext)
 
   useEffect(() => {
     const updatefiles = async () => {
@@ -26,10 +27,16 @@ const SideBar = () => {
           {recentFiles && (
             <>
               {recentFiles.map((file, i) => {
+                console.log(file)
                 return (
                   <NavLink
                     to={`/search/details/${file.uid}`}
                     relative="path"
+                    onClick={() => {
+                      console.log(file.uid)
+                      setDetailFile(file)
+                      //sessionStorage.setItem("")
+                    }}
                   >
                     <div key={i} className="my-3 text-iexyellow">
                       {file.fileName}

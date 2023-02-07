@@ -19,7 +19,7 @@ import { addToIpfs,confirmDocumentAvailable } from "../../shared/ipfsUtils.ts";
 
 const { ethereum } = window;
 
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == "true";
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 const SendForm = () => {
   const { connectedAccount, connectWallet, getNextIpfsGateway } =

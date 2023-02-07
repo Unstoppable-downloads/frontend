@@ -1,5 +1,5 @@
 import { IExec } from "iexec";
-import * as ace from "./constants";
+import * as usdl from "./constants";
 
 const configArgs = { ethProvider: window.ethereum, chainId: 134 };
 const configOptions = { smsURL: process.env.REACT_APP_SMS_URL };
@@ -12,13 +12,14 @@ let iexec = null
  * @returns 
  */
 export const getIexec = function () {
-    if (null == iexec) {
+    if (null === iexec) {
 
         iexec = new IExec(configArgs, configOptions);
         
         if (IS_DEBUG) console.log("Created new instance of iExec");
-        return iexec
     }
+    return iexec
+
     // else {
     //     //if (IS_DEBUG) console.log("Re-using iexec ");
     // }

@@ -36,7 +36,7 @@ const fetchSearchData = async (terms, categories, count) => {
 };
 
 /**
- * 
+ *
  * @returns The 10 most recent files
  */
 const fetchRecentData = async () => {
@@ -51,7 +51,7 @@ const fetchRecentData = async () => {
       "ngrok-skip-browser-warning": "true",
     },
   };
-  
+
   let data = fetch(url, options).then(async (response) => {
     //console.log(await response.json());
     return response.json();
@@ -60,4 +60,27 @@ const fetchRecentData = async () => {
   return data;
 };
 
-export { fetchSearchData, fetchRecentData };
+const fetchSearchOne = async (terms, uid) => {
+  const url = ngrokURL + "searchOne?count=100&uid=" + uid + "&terms=" + terms;
+
+  console.log(ngrokURL);
+  console.log("Fetching search url", url);
+
+  let options = {
+    method: "GET",
+    cache: "no-cache",
+    mode: "cors",
+    headers: {
+      "ngrok-skip-browser-warning": "true",
+    },
+  };
+
+  let data = fetch(url, options).then(async (response) => {
+    //console.log(await response.json());
+    return response.json();
+  });
+  console.log(await data);
+  return data;
+};
+
+export { fetchSearchData, fetchRecentData, fetchSearchOne };

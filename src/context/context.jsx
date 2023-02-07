@@ -34,6 +34,7 @@ export const AceProvider = ({ children }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerms, setsearchTerms] = useState("");
   const [filesSearched, setFilesSearched] = useState({});
+  const [detailFile, setDetailFile] = useState();
 
 
 
@@ -245,7 +246,9 @@ export const AceProvider = ({ children }) => {
         searchTerms,
         setsearchTerms,
         filesSearched,
-        setFilesSearched
+        setFilesSearched,
+        detailFile,
+        setDetailFile
       }}
     >
       {children}
