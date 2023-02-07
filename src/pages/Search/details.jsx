@@ -9,8 +9,12 @@ const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Details() {
-  const { fileName } = useParams();
-  console.log("fileName", fileName);
+  const { uid } = useParams();
+  console.log("fileName", uid);
+
+  useEffect(() =>
+    console.log(uid)
+  , [])
   return (
     <>
       <Helmet>
@@ -19,9 +23,9 @@ function Details() {
 
       <div className="flex">
         <div className="w-full">
-          <h1 className="text-3xl">{fileName}Details of the film</h1>
+          <h1 className="text-3xl">{uid}Details of the film</h1>
           Hello
-          {console.log(fileName)}
+          {console.log(uid)}
         </div>
 
         <div>

@@ -63,7 +63,6 @@ const pushOrder = async(datasetAddress) => {
             volume: 10000000,
             tag: "tee",
             apprestrict: usdl.APP_ADDRESS
-
         }) ;
 
         console.log("SIGNING DATASET ORDER") ;

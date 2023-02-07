@@ -28,7 +28,7 @@ const SideBar = () => {
               {recentFiles.map((file, i) => {
                 return (
                   <NavLink
-                    to={`/search/details/${file.uid}-${file.fileName}`}
+                    to={`/search/details/${file.uid}`}
                     relative="path"
                   >
                     <div key={i} className="my-3 text-iexyellow">
@@ -42,7 +42,7 @@ const SideBar = () => {
         </div>
       </aside>
       <Routes>
-        <Route path="search/details/:uid-:fileName" element={<Details />} />
+        <Route path="search/details/:uid" element={<Details />} />
       </Routes>
     </>
   );
