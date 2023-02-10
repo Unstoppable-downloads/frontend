@@ -25,6 +25,7 @@ export const confirmDocumentAvailable = async (cid: string): Promise<any> => {
     if (IS_DEBUG) console.log(ok);
   }
 
+  result.ipfsURL = `https://infura-ipfs.io/ipfs/${cid}`
   return result;
 
 }
