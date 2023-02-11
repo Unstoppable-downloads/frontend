@@ -16,6 +16,7 @@ import { setModalContent, toggleModal } from "../Modal/ModalController";
 import Modal from "../Modal/Modal";
 
 import { addToIpfs,confirmDocumentAvailable } from "../../shared/ipfsUtils.ts";
+import {getBufferAndChunksFromFile} from "./uploader.ts";
 
 const { ethereum } = window;
 
@@ -40,6 +41,7 @@ const SendForm = () => {
     setSelectedFiles,
     checkFileAvailability,
     setIsAvailable,
+    numberOfChunks, setNumberOfChunks
   } = useContext(AceContext);
   const inputFile = useRef(null);
   const [isAFile, setIsAFile] = useState(false);
@@ -155,7 +157,7 @@ const SendForm = () => {
   };
 
   const publishFile = async () => {
-
+    setNumberOfChunks((await getBufferAndChunksFromFile(selectedFiles[0])).chunks)
 
     // Split the file in bite size chunks and upload to Ipfs
     let metaData = await uploadFileToIpfs(selectedFiles[0]);

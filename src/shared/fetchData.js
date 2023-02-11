@@ -28,5 +28,3 @@ const fetchData = (async (theGraphQuery) => {
 });
 
 export default fetchData;
-
-

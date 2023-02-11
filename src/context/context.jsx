@@ -35,6 +35,7 @@ export const AceProvider = ({ children }) => {
   const [searchTerms, setsearchTerms] = useState("");
   const [filesSearched, setFilesSearched] = useState({});
   const [detailFile, setDetailFile] = useState();
+  const [numberOfChunks, setNumberOfChunks] = useState(0);
 
 
 
@@ -248,7 +249,9 @@ export const AceProvider = ({ children }) => {
         filesSearched,
         setFilesSearched,
         detailFile,
-        setDetailFile
+        setDetailFile,
+        numberOfChunks,
+        setNumberOfChunks
       }}
     >
       {children}

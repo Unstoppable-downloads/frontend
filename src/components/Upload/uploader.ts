@@ -1,22 +1,16 @@
 import * as bufferUtils from "../../utils/BufferUtils.ts";
 import FileChunk from "../../shared/FileChunk.ts";
 import MetaData from "../../shared/metadata.ts";
-
-import { delay } from "../../utils/delay";
-
 import { fixObservableSubclass } from "@apollo/client/utilities";
-
 import * as constants from "../../shared/constants";
 
 //import crypto from "crypto";
 import { v4 as uuidv4 } from 'uuid';
-
 import * as sha1 from "js-sha1";
 
 import { addToIpfs } from "../../shared/ipfsUtils.ts";
 
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
-
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === 'true';
 
 const createFiles = (directory, files) => {
   return files.map(file => {
@@ -57,7 +51,6 @@ const streamFiles = async (directory, files) => {
 
 
 const addMetaDataToLocalCache = (meta: MetaData) => {
-
   let storage = window.localStorage;
   let existingTempStorage = storage.getItem("USDL_TMP");
   let tempStorageItems = new Array<any>();
@@ -73,7 +66,7 @@ const addMetaDataToLocalCache = (meta: MetaData) => {
 
 
 function createHexHash(algo, arrayBuffer, callback) {
-  if (Object.prototype.toString.call(arrayBuffer) == '[object String]') {
+  if (Object.prototype.toString.call(arrayBuffer) === '[object String]') {
     var encoder = new TextEncoder()
     arrayBuffer = encoder.encode(arrayBuffer)
   }
@@ -93,7 +86,6 @@ function createHexHash(algo, arrayBuffer, callback) {
 
 const readFile = async (file: File): Promise<any> => {
   try {
-
     const readResult: ArrayBuffer = await new Promise(async (resolve, reject) => {
       const fileReader = new FileReader();
       await fileReader.readAsArrayBuffer(file);
@@ -128,15 +120,12 @@ const readFile = async (file: File): Promise<any> => {
  */
 export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
-  const readResult: any = await readFile(file);
+  var { chunks, arrayBuffer, readResult, chunkSize, fileLength }: { chunks: number; arrayBuffer: ArrayBuffer; readResult: any; chunkSize: number; fileLength: number; } = await getBufferAndChunksFromFile(file);
 
-  let arrayBuffer: ArrayBuffer = readResult.bytes;
-
-  //let aarrayBuffer =  bufferUtils.toArrayBuffer(fileBuffer); 
-  let chunkSize = constants.MAX_PART_SIZE_MB * 1024 * 1024;
-  let fileLength = arrayBuffer.byteLength;
   let fileChunks = new Array<FileChunk>();
   let fileUid: string = uuidv4().replaceAll('-', '');
+
+
 
   let meta = new MetaData();
   meta.fileName = file.name;
@@ -145,17 +134,11 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
   meta.hash = readResult.hash;
   meta.uid = fileUid;
 
-  if (fileLength < chunkSize) {
-    chunkSize = Math.floor(fileLength / constants.MIN_NB_PARTS);
-    console.log("Small file below ", constants.MAX_PART_SIZE_MB, " MB");
-  }
 
-  let chunks = Math.ceil(fileLength / chunkSize);
   //console.log("chunks", chunks, "chunkSize", chunkSize, "fileLength", fileLength, "chunks", chunks);
 
-  let chunk = 0;
+  var chunk = 0;
   while (chunk <= chunks) {
-
     var start = chunk * chunkSize;
     let end = start + chunkSize;
     end = end > fileLength ? fileLength : end;
@@ -166,7 +149,7 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
     let chunkData = arrayBuffer.slice(start, end);
 
-    let chunkDataAsBuffer = bufferUtils.toBuffer(chunkData);
+    var chunkDataAsBuffer = bufferUtils.toBuffer(chunkData);
     let fc = new FileChunk();
     fc.sequence = chunk;
     fc.size = chunkData.byteLength;
@@ -181,8 +164,7 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
     try {
       let cid = await addToIpfs(chunkDataAsBuffer);
 
-      if (cid && cid != "") {
-
+      if (cid && cid !== "") {
         // let cid = await uploadData(chunkDataAsBuffer, fc.name, arrayBuffer);
         fc.cid = cid;
 
@@ -193,25 +175,38 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
         //saveFile(chunkDataAsBuffer, fc.name);
         chunk++;
-
       }
       else {
         alert("Could not ensure file is available to IPFS");
         throw "Could not check availabilty on ipfs";
       }
-
     }
     catch (exc) {
       console.error(exc);
       break;
     }
-
   }
 
   meta.chunks = fileChunks;
-
   addMetaDataToLocalCache(meta);
 
   return meta;
 }
 
+export async function getBufferAndChunksFromFile(file: File) {
+  const readResult: any = await readFile(file);
+
+  let arrayBuffer: ArrayBuffer = readResult.bytes;
+
+  let chunkSize = constants.MAX_PART_SIZE_MB * 1024 * 1024;
+  let fileLength = arrayBuffer.byteLength;
+
+
+  if (fileLength < chunkSize) {
+    chunkSize = Math.floor(fileLength / constants.MIN_NB_PARTS);
+    console.log("Small file below ", constants.MAX_PART_SIZE_MB, " MB");
+  }
+
+  var chunks = Math.ceil(fileLength / chunkSize);
+  return { chunks, arrayBuffer, readResult, chunkSize, fileLength };
+}

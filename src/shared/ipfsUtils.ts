@@ -3,7 +3,7 @@ import * as constants from "./constants";
 import all from 'it-all'
 
 let ipfs: null
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === 'true';
 
 
 export const confirmDocumentAvailable = async (cid: string): Promise<any> => {
@@ -55,7 +55,7 @@ export const checkFileAvailability = async (url, _callback) => {
     //redirect: "follow"
   };
 
-  if (url.indexOf('cloudflare') == -1 && url.indexOf('pinata') == -1) {
+  if (url.indexOf('cloudflare') === -1 && url.indexOf('pinata') === -1) {
     //options.headers =  {"Access-Control-Allow-Origin": ["*"] }
   }
   try {

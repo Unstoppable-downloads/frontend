@@ -3,10 +3,12 @@ import { Helmet } from 'react-helmet';
 import SendForm from "../components/Upload/SendForm";
 import { AceContext } from '../context/context';
 import crypto from 'crypto-browserify';
+import { numberOfChunks } from '../components/Upload/uploader.ts';
+import StepBar from '../components/StepBar';
 const APP_NAME = process.env.REACT_APP_NAME;
 
 function Upload() {
-  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, checkFileAvailability, backgroundIsLight } = useContext(AceContext);
+  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, checkFileAvailability, backgroundIsLight, numberOfChunks } = useContext(AceContext);
   
 
   const [message, setMessage] = useState("")
@@ -21,11 +23,20 @@ function Upload() {
     writeStatus(state)
   }, [state])
 
+  useEffect(() => {
+    console.log("numberOfChunks", numberOfChunks);
+  }, [numberOfChunks])
+
   // Defining algorithm
   const algorithm = 'aes-256-cbc';
 
   // Defining key
   const key = crypto.randomBytes(32);
+
+  const chunksBullet = [];
+  for (let i = 0; i < numberOfChunks; i++) {
+    chunksBullet.push(<div className="mx-8 rounded-full bg-iexyellow w-5 h-5"></div>)
+  }
 
   return (
     <>
@@ -33,8 +44,10 @@ function Upload() {
         <title>{APP_NAME} | Upload</title>
       </Helmet>
       <div className="relative flex mx-auto py-m justify-center">
-        <div className="flex">
+        <div className="flex flex-col">
           <SendForm />
+          <div className="flex items-center mt-s mx-auto">{chunksBullet}</div>
+          <StepBar />
         </div>
 
         <div className="text-iexwhite">
