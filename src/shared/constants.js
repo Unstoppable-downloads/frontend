@@ -1,6 +1,6 @@
 // TODO: MOVE THIS TO ENVIRONMENT VARIABLES
-export const SMS_URL = "https://v7.sms.debug-tee-services.bellecour.iex.ec";
-export const APP_ADDRESS = "0x41dA11EAb51d5E5D90F40f626D75afeBB5D1e933";
+export const SMS_URL = "https://v7.sms.prod-tee-services.bellecour.iex.ec";
+export const APP_ADDRESS = "0x19A75CBeb6616883D8208b2aB49611638eDC13C0";
 export const WORKERPOOL_ADDRESS = "0x9849e7496cdbff132c84753591d09b181c25f29a";
 export const TEE_TAG = "0x0000000000000000000000000000000000000000000000000000000000000001";
 //

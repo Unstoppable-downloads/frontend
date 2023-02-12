@@ -21,6 +21,13 @@ function Upload() {
     writeStatus(state)
   }, [state])
 
+  
+  const  onStatusChanged = function (newStatus)
+  {
+      document.getElementById("statusDiv").innerText = newStatus ; 
+  }
+
+
   // Defining algorithm
   const algorithm = 'aes-256-cbc';
 
@@ -34,10 +41,10 @@ function Upload() {
       </Helmet>
       <div className="relative flex mx-m py-m">
         <div className="flex">
-          <SendForm />
+          <SendForm statusChangedHandler={{onStatusChanged}} />
         </div>
 
-        <div className="text-iexwhite">
+        <div id="statusDiv"> hello man ! 
         </div>
       </div>
         

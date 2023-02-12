@@ -12,7 +12,7 @@ import {toggleModal} from "./components/Modal/ModalController" ;
 import Research from "./pages/Research";
 
 function App() {
-  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode } = useContext(AceContext);
+  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
   const { ethereum } = window;
 
   document.onkeydown = function (evt) {

@@ -1,3 +1,6 @@
+import { AceContext } from "../../context/context";
+import React, { useContext, useEffect } from "react";
+
 import * as bufferUtils from "../../utils/BufferUtils.ts";
 import FileChunk from "../../shared/FileChunk.ts";
 import MetaData from "../../shared/metadata.ts";
@@ -126,8 +129,9 @@ const readFile = async (file: File): Promise<any> => {
  * Split the file into n parts
  * @param  
  */
-export async function uploadFileToIpfs(file: File): Promise<MetaData> {
+export async function uploadFileToIpfs(file: File, onStatusChanged: Function): Promise<MetaData> {
 
+  console.log("onStatusChanged", onStatusChanged) ; 
   const readResult: any = await readFile(file);
 
   let arrayBuffer: ArrayBuffer = readResult.bytes;
@@ -179,6 +183,9 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
 
 
     try {
+
+      if (onStatusChanged) onStatusChanged(`uploading chunk ${chunk}/${chunks}`);
+
       let cid = await addToIpfs(chunkDataAsBuffer);
 
       if (cid && cid != "") {
@@ -187,7 +194,7 @@ export async function uploadFileToIpfs(file: File): Promise<MetaData> {
         fc.cid = cid;
 
         fileChunks.push(fc);
-        console.log("uploadData added", chunk, "/", chunks);
+        console.log("uploadeData added", chunk, "/", chunks);
 
         //console.log("filechunk", fc);
 
