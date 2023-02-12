@@ -1,31 +1,31 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/Navbar";
-import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import { AceContext } from "./context/context";
 import Protected from "./pages/Protected";
 import Footer from "./components/Footer";
 import Helmet from "react-helmet";
-import Modal from "./components/Modal/Modal" ;
-import {toggleModal} from "./components/Modal/ModalController" ;
-import Research from "./pages/Research";
+import Modal from "./components/Modal/Modal";
+import { toggleModal } from "./components/Modal/ModalController";
+import Research from "./pages/Search/index";
+import Details from "./pages/Search/details";
 
 function App() {
   const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
   const { ethereum } = window;
 
   document.onkeydown = function (evt) {
-    evt = evt || window.event
-    var isEscape = false
+    evt = evt || window.event;
+    var isEscape = false;
     if ("key" in evt) {
-      isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      isEscape = evt.key === "Escape" || evt.key === "Esc";
     } else {
-      isEscape = (evt.keyCode === 27)
+      isEscape = evt.keyCode === 27;
     }
 
-    if (isEscape && document.body.classList.contains('modal-active')) {
-      toggleModal.call() ; 
+    if (isEscape && document.body.classList.contains("modal-active")) {
+      toggleModal.call();
     }
   };
 
@@ -52,18 +52,18 @@ function App() {
   }, [creativeMode]);
 
   useEffect(() => {
-    refreshOnWalletChange()
-  }, [])
+    refreshOnWalletChange();
+  }, []);
 
   const isConnected = connectedAccount !== "";
 
   const refreshOnWalletChange = () => {
     if (ethereum) {
-      ethereum.on('accountsChanged', function () {
-        window.location.reload()
-      })
+      ethereum.on("accountsChanged", function () {
+        window.location.reload();
+      });
     }
-  }
+  };
 
   return (
     <div
@@ -84,7 +84,7 @@ function App() {
           <div className="page-container">
             <main className="w-full text-iexwhite">
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Research />} />
                 <Route
                   path="/upload"
                   element={
@@ -93,14 +93,10 @@ function App() {
                     </Protected>
                   }
                 />
-                <Route
-                  path="/research"
-                  element={
-                    <Protected isLoggedIn={isConnected}>
-                      <Research />
-                    </Protected>
-                  }
-                />
+                <Route exact path="/search">
+                  <Route exact path="" element={<Research />} />
+                  <Route exact path="details/*" element={<Details />} />
+                </Route>
               </Routes>
             </main>
           </div>

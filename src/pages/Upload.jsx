@@ -37,9 +37,9 @@ function Upload() {
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} | Home</title>
+        <title>{APP_NAME} | Upload</title>
       </Helmet>
-      <div className="relative flex mx-m py-m">
+      <div className="relative flex mx-auto py-m justify-center">
         <div className="flex">
           <SendForm statusChangedHandler={{onStatusChanged}} />
         </div>

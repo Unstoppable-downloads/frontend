@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 import { AceContext } from "../../context/context";
-import * as ace from "../../shared/constants";
 import { delay } from "../../utils/delay";
 import { isAddress } from "../../utils/isAddress";
 
@@ -20,7 +19,7 @@ import { addToIpfs,confirmDocumentAvailable } from "../../shared/ipfsUtils.ts";
 
 const { ethereum } = window;
 
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == "true";
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 const SendForm = (props) => {
   const { connectedAccount, connectWallet, getNextIpfsGateway } =
@@ -214,7 +213,7 @@ const SendForm = (props) => {
     <>
       <Modal id="sendform-modal" onModalClose={modalCloseHandler} />
       <form>
-        <div className="mr-8 flex w-80 flex-col rounded-2xl bg-iexwhite px-4 py-4 text-iexblk shadow-xl">
+        <div className="mx-auto flex w-full justify-center flex-col rounded-2xl bg-iexwhite px-4 py-8 text-iexblk shadow-xl">
           <div className="uploader">
             {isAFile ? (
               <div>
