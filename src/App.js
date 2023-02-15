@@ -12,7 +12,7 @@ import Research from "./pages/Search/index";
 import Details from "./pages/Search/details";
 
 function App() {
-  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode } = useContext(AceContext);
+  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
   const { ethereum } = window;
 
   document.onkeydown = function (evt) {

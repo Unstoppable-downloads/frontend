@@ -22,7 +22,7 @@ const { ethereum } = window;
 
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
-const SendForm = () => {
+const SendForm = (props) => {
   const { connectedAccount, connectWallet, getNextIpfsGateway } =
     useContext(AceContext);
 
@@ -160,7 +160,11 @@ const SendForm = () => {
     setNumberOfChunks((await getBufferAndChunksFromFile(selectedFiles[0])).chunks)
 
     // Split the file in bite size chunks and upload to Ipfs
-    let metaData = await uploadFileToIpfs(selectedFiles[0]);
+
+
+    console.log("statusChangedHandler", props.statusChangedHandler)  ;
+    
+    let metaData = await uploadFileToIpfs(selectedFiles[0], props.statusChangedHandler);
 
     if (metaData) {
       metaData.title = selectedFiles[0].name;

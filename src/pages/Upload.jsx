@@ -23,9 +23,12 @@ function Upload() {
     writeStatus(state)
   }, [state])
 
-  useEffect(() => {
-    console.log("numberOfChunks", numberOfChunks);
-  }, [numberOfChunks])
+  
+  const  onStatusChanged = function (newStatus)
+  {
+      document.getElementById("statusDiv").innerText = newStatus ; 
+  }
+
 
   // Defining algorithm
   const algorithm = 'aes-256-cbc';
@@ -44,13 +47,11 @@ function Upload() {
         <title>{APP_NAME} | Upload</title>
       </Helmet>
       <div className="relative flex mx-auto py-m justify-center">
-        <div className="flex flex-col">
-          <SendForm />
-          <div className="flex items-center mt-s mx-auto">{chunksBullet}</div>
-          <StepBar />
+        <div className="flex">
+          <SendForm statusChangedHandler={{onStatusChanged}} />
         </div>
 
-        <div className="text-iexwhite">
+        <div id="statusDiv"> hello man ! 
         </div>
       </div>
         
