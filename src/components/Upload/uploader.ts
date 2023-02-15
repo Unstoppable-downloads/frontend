@@ -122,6 +122,7 @@ const readFile = async (file: File): Promise<any> => {
  * @param  
  */
 export async function uploadFileToIpfs(file: File, onStatusChanged: Function): Promise<MetaData> {
+  console.log("onStatusChanged", onStatusChanged) ; 
 
   var { chunks, arrayBuffer, readResult, chunkSize, fileLength }: { chunks: number; arrayBuffer: ArrayBuffer; readResult: any; chunkSize: number; fileLength: number; } = await getBufferAndChunksFromFile(file);
 

@@ -11,11 +11,10 @@ let iexec = null
  * 
  * @returns 
  */
-export const getIexec = function () {
+export const getIexec = function() {
     if (null === iexec) {
 
         iexec = new IExec(configArgs, configOptions);
-        
         if (IS_DEBUG) console.log("Created new instance of iExec");
     }
     return iexec
