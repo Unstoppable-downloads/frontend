@@ -1,6 +1,7 @@
 import { create, Options } from 'ipfs-http-client'
 import * as constants from "./constants";
 import all from 'it-all'
+import { Buffer } from 'buffer';
 
 let ipfs: null
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === 'true';
@@ -25,7 +26,7 @@ export const confirmDocumentAvailable = async (cid: string): Promise<any> => {
     if (IS_DEBUG) console.log(ok);
   }
 
-  result.ipfsURL = `https://infura-ipfs.io/ipfs/${cid}`
+  //result.ipfsURL = `https://infura-ipfs.io/ipfs/${cid}`
   return result;
 
 }
@@ -89,9 +90,33 @@ const getIPFS = async function () {
   */
   //  let node = await ipfsCore.create({ repo: 'ipfs-usdl-' + new Date().getTime() });
 
+  const auth = "Basic " + Buffer.from(
+    process.env.REACT_APP_INFURA_ID +
+    ":" + process.env.REACT_APP_INFURA_SECRET_KEY
+).toString("base64");
+
+
   let opt: Options = {}
   //opt.host = '127.0.0.1' ; 
-  opt.url = "http://localhost:5001/api/v0"
+  //opt.url = "http://localhost:5001/api/v0"
+
+
+
+  opt.host = "ipfs.infura.io"
+  opt.port = 5001
+  opt.protocol = "https"
+  opt.headers = {
+      authorization: auth,
+      "Access-Control-Allow-Origin": "*"
+  }
+  // host: "ipfs.infura.io",
+  //   port: 5001,
+  //   protocol: "https",
+  //   //apiPath: "/api/v0",
+  //   headers: {
+  //       authorization: auth,
+  //       "Access-Control-Allow-Origin": ["*"]
+  //   },
   let node = create(opt);
 
   return node;

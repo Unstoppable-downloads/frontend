@@ -114,8 +114,8 @@ const SendForm = () => {
       iexec = getIexec();
     } catch (e) {
       setModalContent("sendform-modal", "Connection is required ❌", "Please connect your wallet first.", true);
-      return false;
       console.error(e);
+      return false;
     }
 
     const isConnected = connectedAccount && connectedAccount !== "";
@@ -142,9 +142,9 @@ const SendForm = () => {
     if (!isValidAddress) {
       resolvedAddressTo = await iexec.ens.resolveName(addressTo);
       if (
-        undefined == resolvedAddressTo ||
+        undefined === resolvedAddressTo ||
         null == resolvedAddressTo ||
-        resolvedAddressTo.trim() == ""
+        resolvedAddressTo.trim() === ""
       ) {
         setModalContent("sendform-modal", "Invalid address ❌", `Address ${addressTo} is not recognised. The value is not a valid ethereum address and no matching ENS item could be found.`, true);
         return false;
@@ -308,10 +308,10 @@ const SendForm = () => {
 
           <div className="p-4">
             <select
-              className="my-4 border border-iexblk"
+              className="my-4 border border-iexblk rounded-md bg-iexwhite px-4 py-2 font-bold text-iexblk"
               onChange={(e) => handleChangeList(e)}
             >
-              <option value="">--Please choose an category--</option>
+              <option value="">-- Please choose an category --</option>
               <option value="music">Music</option>
               <option value="movie">Movie</option>
               <option value="series">Series</option>

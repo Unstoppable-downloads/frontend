@@ -60,7 +60,7 @@ const pushOrder = async(datasetAddress) => {
         console.log("CREATE DATASET ORDER") ;
         const orderTemplate = await iexec.order.createDatasetorder({
             dataset: datasetAddress,
-            volume: 10000000,
+            volume: 1000000,
             tag: "tee",
             apprestrict: usdl.APP_ADDRESS
         }) ;
@@ -68,11 +68,11 @@ const pushOrder = async(datasetAddress) => {
         console.log("SIGNING DATASET ORDER") ;
 
         const signedOrder = await iexec.order.signDatasetorder(orderTemplate)
-        if (IS_DEBUG) console.log("Signed order", signedOrder)
+        console.log("Signed order", signedOrder)
 
         console.log("PUBLISHING DATASET ORDER") ;
         const pushedOrder = await iexec.order.publishDatasetorder(signedOrder);
-        if (IS_DEBUG) console.log(pushedOrder);
+        console.log(pushedOrder);
 
        /* console.log("PUBLISHING DATASET ORDER") ;
         const foundorders = await iexec.orderbook.fetchDatasetOrderbook(

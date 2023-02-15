@@ -89,7 +89,7 @@ const StepBar = () => {
         </li>
         <li className="mx-4 flex flex-col list-none items-center justify-center font-semibold">
           <p className="progress seven">7</p>
-          <p>File sent</p>
+          <p className="mt-24 w-full" style={{ transform: 'rotate(280deg)' }}>File sent</p>
         </li>
       </ul>
     </>
