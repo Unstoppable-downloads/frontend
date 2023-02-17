@@ -12,6 +12,7 @@ function Upload() {
   
 
   const [message, setMessage] = useState("")
+  const [statusWidth, setStatusWidth] = useState()
 
   const writeStatus = (status) => {
     return (
@@ -22,11 +23,31 @@ function Upload() {
   useEffect(() => {
     writeStatus(state)
   }, [state])
+  useEffect(() => {
+    onStatusChanged("")
+  })
+  useEffect(() => {
+
+  }, [statusWidth])
 
   
-  const  onStatusChanged = function (newStatus)
-  {
-      document.getElementById("statusDiv").innerText = newStatus ; 
+  const onStatusChanged = (newStatus) => {
+    console.log("New status", newStatus)
+    console.log(document.getElementById("statusBar").innerText)
+    const chunks = newStatus.split('/');
+    var actualChunk = 0;
+    if (chunks[0]) actualChunk = parseInt(chunks[0]);
+    var totalChunks = 0;
+    if (chunks[1]) totalChunks = parseInt(chunks[1]);
+    console.log("actual chunk", actualChunk, "Total number of chnks", chunks[1])
+    if (actualChunk >= 0 && totalChunks > 0) {
+      let width = actualChunk / totalChunks
+      console.log(width)
+      document.getElementById("statusBarContainer").classList.remove("hidden")
+      setStatusWidth(width)
+      document.getElementById("statusBar").style.width = `${width*100}%`;
+      document.getElementById("statusBar").innerText = newStatus;
+    }
   }
 
 
@@ -46,13 +67,16 @@ function Upload() {
       <Helmet>
         <title>{APP_NAME} | Upload</title>
       </Helmet>
-      <div className="relative flex mx-auto py-m justify-center">
+      <div className="relative flex flex-col mx-auto py-m items-center justify-center">
         <div className="flex">
-          <SendForm statusChangedHandler={{onStatusChanged}} />
+          <SendForm statusChangedHandler={onStatusChanged} />
+        </div> 
+        <div id="statusBarContainer" className="hidden w-64 bg-gray-200 rounded-l-full rounded-r-full items-center m-8">
+          <div id="statusBar" className="pgbr bg-iexyellow text-base font-medium text-iexblk text-center p-0.5 leading-none h-4">90%</div>
         </div>
-
-        <div id="statusDiv"> hello man ! 
-        </div>
+        {/* <div id="statusDiv">
+          
+        </div> */}
       </div>
         
     </>

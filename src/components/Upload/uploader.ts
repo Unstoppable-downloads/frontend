@@ -167,7 +167,7 @@ export async function uploadFileToIpfs(file: File, onStatusChanged: Function): P
 
     try {
 
-      if (onStatusChanged) onStatusChanged(`uploading chunk ${chunk}/${chunks}`);
+      if (onStatusChanged) onStatusChanged(`${chunk+1}/${chunks}`);
 
       let cid = await addToIpfs(chunkDataAsBuffer);
 
@@ -176,7 +176,7 @@ export async function uploadFileToIpfs(file: File, onStatusChanged: Function): P
         fc.cid = cid;
 
         fileChunks.push(fc);
-        console.log("uploadeData added", chunk, "/", chunks);
+        console.log("uploadeData added", chunk+1, "/", chunks);
 
         //console.log("filechunk", fc);
 

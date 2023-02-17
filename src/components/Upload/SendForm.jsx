@@ -23,8 +23,7 @@ const { ethereum } = window;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 const SendForm = (props) => {
-  const { connectedAccount, connectWallet, getNextIpfsGateway } =
-    useContext(AceContext);
+  const { connectedAccount, connectWallet, getNextIpfsGateway } = useContext(AceContext);
 
   const {
     isLoading,
@@ -160,7 +159,6 @@ const SendForm = (props) => {
     setNumberOfChunks((await getBufferAndChunksFromFile(selectedFiles[0])).chunks)
 
     // Split the file in bite size chunks and upload to Ipfs
-
 
     console.log("statusChangedHandler", props.statusChangedHandler)  ;
     
