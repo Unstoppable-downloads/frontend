@@ -52,9 +52,7 @@ function Research() {
                         <td>{file.title}</td>
                         <td>{file.fileName}</td>
                         <td>
-                          {file.categories.map((category, j) => {
-                            return <span key={j}>{category}, </span>;
-                          })}
+                          {file.categories}
                         </td>
                         <td>{sizeToReadableSize(file.fileSize)[0]} {sizeToReadableSize(file.fileSize)[1]}</td>
                         <td>{file.nbDownloads}</td>
