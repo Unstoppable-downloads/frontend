@@ -8,6 +8,6 @@ export default class MetaData {
     chunks: Array<FileChunk>
     hash: string
     imdb: string
-    categories: Array<string>
+    category: Array<string>
     description: string
 }

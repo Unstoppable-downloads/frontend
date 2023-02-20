@@ -45,7 +45,7 @@ const NavBar = () => {
                 {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Inbox</span>)}
                 </li>
                 <li>
-                {connectedAccount ? (<NavLink to="/sent" relative="path">Sent</NavLink> ): (<span onClick={showModalNotConnected}>Sent</span>)}
+                {connectedAccount ? (<NavLink to="/#" relative="path">Settings</NavLink> ): (<span onClick={showModalNotConnected}>Settings</span>)}
                 </li>
                 <li></li>
               </ul>
@@ -54,12 +54,12 @@ const NavBar = () => {
           <div>
             &nbsp;
           </div>
-          <div className="cursor-pointer" onClick={() => window.open("https://t.me/ace_ft_bot")}>
+          {/* <div className="cursor-pointer" onClick={() => window.open("https://t.me/ace_ft_bot")}> */}
             {/* <NavLink to="/settings" relative="path"> */}
-              <img src="/tg.png" className="tg-logo" />
-              &nbsp;Settings
+              {/* <img src="/tg.png" className="tg-logo" />
+              &nbsp;Settings */}
             {/* </NavLink> */}
-          </div>
+          {/*</div> */}
           <div className="flex max-w-2/10 basis-1/5">
             {connectedAccount ? (
 

@@ -38,7 +38,7 @@ function Research() {
                 <tr>
                   <th className="text-center">Title</th>
                   <th className="text-center">Filename</th>
-                  <th className="text-center">Categories</th>
+                  <th className="text-center">category</th>
                   <th className="text-center">Size</th>
                   <th className="text-center"># DL</th>
                   <th className="px-8 text-center">&nbsp;</th>
@@ -52,7 +52,7 @@ function Research() {
                         <td>{file.title}</td>
                         <td>{file.fileName}</td>
                         <td>
-                          {file.categories}
+                          {file.category}
                         </td>
                         <td>{sizeToReadableSize(file.fileSize)[0]} {sizeToReadableSize(file.fileSize)[1]}</td>
                         <td>{file.nbDownloads}</td>

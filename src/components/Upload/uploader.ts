@@ -134,7 +134,7 @@ export async function uploadFileToIpfs(file: File, onStatusChanged: Function): P
   let meta = new MetaData();
   meta.fileName = file.name;
   meta.fileSize = arrayBuffer.byteLength;
-  meta.categories = ["e-book"];
+  meta.category = ["e-book"];
   meta.hash = readResult.hash;
   meta.uid = fileUid;
 
