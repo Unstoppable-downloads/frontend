@@ -7,13 +7,13 @@ const ngrokURL = process.env.REACT_APP_NGROK_ADDRESS;
  * @param {number} count
  * @returns The files corresponding to the request
  */
-const fetchSearchData = async(terms, category, count) => {
+const fetchSearchData = async(terms, categories, count) => {
     const url =
         ngrokURL +
         "search?terms=" +
         terms +
         "&" +
-        `category=[\"movie\"]&count=100`;
+        `categories=[${categories}]&count=100`;
 
     console.log(ngrokURL);
     console.log("Fetching search url", url);

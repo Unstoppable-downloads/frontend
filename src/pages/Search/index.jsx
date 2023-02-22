@@ -4,6 +4,7 @@ import { AceContext } from "../../context/context";
 import SearchBar from "../../components/SearchBar";
 import {sizeToReadableSize} from "../../utils/sizeToReadableSize";
 import SideBar from "../../components/Sidebar";
+import {NavLink} from "react-router-dom";
 const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
@@ -51,13 +52,24 @@ function Research() {
                       <tr className="text-center" key={i}>
                         <td>{file.title}</td>
                         <td>{file.fileName}</td>
-                        <td>
-                          {file.category}
-                        </td>
+                        <td>{file.category}</td>
                         <td>{sizeToReadableSize(file.fileSize)[0]} {sizeToReadableSize(file.fileSize)[1]}</td>
                         <td>{file.nbDownloads}</td>
                         <td>
-                          <button className="btn h-6"><a href="#">Details</a></button>
+                          <button className="btn h-6">
+                            <NavLink to={`/details/${file.uid}`}
+                              relative="path"
+                              onClick={() => {
+                                console.log(file.uid)
+                                setDetailFile(file)
+                                //sessionStorage.setItem("")
+                              }}
+                            >
+                              Details
+                            </NavLink>
+                            
+                            {/* <a href="#">Details</a> */}
+                          </button>
                         </td>
                       </tr>
                     );

@@ -48,9 +48,9 @@ export const AceProvider = ({ children }) => {
   ).toString("base64");
 
 
-  useEffect(() => {
-    fetchImages()
-  }, []);
+  // useEffect(() => {
+  //   fetchImages()
+  // }, []);
 
 
 
@@ -68,23 +68,23 @@ export const AceProvider = ({ children }) => {
   }
 
 
-  const fetchImages = async () => {
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_BACKEND_URL + '/background'
-      );
-      const bg = await response.json();
-      const creator = bg.user;
-      setBackground(bg);
-      setBgCreator(creator);
-      setBgUrls(bg.urls);
-      setBgCreatorSocial(creator.social);
-      setBackgroundIsLight(isLightColor(bg.color));
+  // const fetchImages = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       process.env.REACT_APP_BACKEND_URL + '/background'
+  //     );
+  //     const bg = await response.json();
+  //     const creator = bg.user;
+  //     setBackground(bg);
+  //     setBgCreator(creator);
+  //     setBgUrls(bg.urls);
+  //     setBgCreatorSocial(creator.social);
+  //     setBackgroundIsLight(isLightColor(bg.color));
 
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
 
   const connectWallet = async () => {

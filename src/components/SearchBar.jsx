@@ -14,16 +14,38 @@ const SearchBar = () => {
     filesSearched,
     setFilesSearched,
   } = useContext(AceContext);
-  const [searchSelectedCategories, addSearchSelectedCategories] = useState([]);
+  const [searchSelectedCategories, setSearchSelectedCategories] = useState([]);
 
   useEffect(() => {}, [filesSearched]);
+  useEffect(() => {
+    console.log("Selected categories", searchSelectedCategories)
+  }, [searchSelectedCategories])
+
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     setIsSearching(true);
-    console.log(await fetchSearchData(searchTerms, ["", ""], 100));
-    setFilesSearched(await fetchSearchData(searchTerms, ["", ""], 100));
+    console.log(await fetchSearchData(searchTerms, searchSelectedCategories, 100));
+    setFilesSearched(await fetchSearchData(searchTerms, searchSelectedCategories, 100));
   };
+
+  function toggleSelectedCategories(category) {
+    setSearchSelectedCategories(searchSelectedCategories => {
+      var arr = searchSelectedCategories;
+      if (arr.length > 0) {
+        if(arr.includes(category)) {
+          const newArr = arr.filter(i => i !== category); // remove item
+          console.log(newArr)
+          arr = newArr
+        } else {
+          arr = [...arr, category]; // add item
+        }
+      } else {
+        arr = [...arr, category];
+      }
+      return arr;
+    })
+  }
 
   return (
     <>
@@ -64,7 +86,9 @@ const SearchBar = () => {
               name="movie"
               value="movie"
               id="movie"
-              onClick={() => {}}
+              onClick={() => {
+                toggleSelectedCategories("movie");
+              }}
             />
             <label htmlFor="movie" className="ml-2">
               Movie
@@ -76,7 +100,9 @@ const SearchBar = () => {
               name="music"
               value="music"
               id="music"
-              onClick={() => {}}
+              onClick={(e) => {
+                toggleSelectedCategories("music");
+              }}
             />
             <label htmlFor="music" className="ml-2">
               Music
@@ -88,7 +114,9 @@ const SearchBar = () => {
               name="series"
               value="series"
               id="series"
-              onClick={() => {}}
+              onClick={(e) => {
+                toggleSelectedCategories("series");
+              }}
             />
             <label htmlFor="series" className="ml-2">
               Series
@@ -100,7 +128,9 @@ const SearchBar = () => {
               name="ebook"
               value="ebook"
               id="ebook"
-              onClick={() => {}}
+              onClick={() => {
+                toggleSelectedCategories("ebook");
+              }}
             />
             <label htmlFor="ebook" className="ml-2">
               E-book
@@ -112,7 +142,9 @@ const SearchBar = () => {
               name="software"
               value="software"
               id="software"
-              onClick={() => {}}
+              onClick={() => {
+                toggleSelectedCategories("software");
+              }}
             />
             <label htmlFor="software" className="ml-2">
               Software
@@ -124,7 +156,9 @@ const SearchBar = () => {
               name="game"
               value="game"
               id="game"
-              onClick={() => {}}
+              onClick={() => {
+                toggleSelectedCategories("game");
+              }}
             />
             <label htmlFor="game" className="ml-2">
               Game
@@ -136,7 +170,9 @@ const SearchBar = () => {
               name="other"
               value="other"
               id="other"
-              onClick={() => {}}
+              onClick={() => {
+                toggleSelectedCategories("other");
+              }}
             />
             <label htmlFor="other" className="ml-2">
               Other
