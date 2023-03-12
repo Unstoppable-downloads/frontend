@@ -23,9 +23,11 @@ const { ethereum } = window;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 const SendForm = (props) => {
-  const { connectedAccount, connectWallet, getNextIpfsGateway } = useContext(AceContext);
+  const { getNextIpfsGateway } = useContext(AceContext);
 
   const {
+    connectWallet,
+    connectedAccount,
     isLoading,
     setIsLoading,
     addressTo,
@@ -48,6 +50,8 @@ const SendForm = (props) => {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [imdb, setImdb] = useState("");
+
+  useEffect(() => {}, [numberOfChunks])
 
   let resolvedAddressTo;
 
@@ -156,7 +160,10 @@ const SendForm = (props) => {
   };
 
   const publishFile = async () => {
-    setNumberOfChunks((await getBufferAndChunksFromFile(selectedFiles[0])).chunks)
+    var fileToPublish = selectedFiles[0];
+    console.log("Size vefore compression = ", fileToPublish.size)
+    document.body.style.cursor = 'wait';
+    setNumberOfChunks((await getBufferAndChunksFromFile(fileToPublish)).chunks)
 
     // Split the file in bite size chunks and upload to Ipfs
 
@@ -165,7 +172,8 @@ const SendForm = (props) => {
     let metaData = await uploadFileToIpfs(selectedFiles[0], props.statusChangedHandler);
 
     if (metaData) {
-      metaData.title = selectedFiles[0].name;
+      metaData.title = title;
+      metaData.fileName = selectedFiles[0].name
       metaData.imdb = imdb;
       metaData.description = description;
       metaData.category = selectedValueList;
@@ -202,8 +210,9 @@ const SendForm = (props) => {
       }
     }
 
-  //  await downloadFile(metaData);
+    document.body.style.cursor = 'default';
 
+    //  await downloadFile(metaData);
     //let jsonData = JSON.stringify(metaData) ;
     //encryptDataset(metaData) ;
   };
@@ -368,9 +377,7 @@ const SendForm = (props) => {
                 id="btn-transfer"
                 onClick={async (e) => {
                   e.preventDefault();
-
                   publishFile();
-
                   alert("done");
                 }}
               >

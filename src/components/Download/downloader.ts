@@ -81,38 +81,32 @@ function arrayBufferToBufferCycle(ab) {
         buffer[i] = view[i];
     }
     return buffer;
-  }
+}
+
 
 export async function downloadFile(meta: MetaData) {
 
     let allChunks = new Array(meta.chunks.length) ; 
 
     let isok:boolean = true ;
-    for(let i:number=0;i<allChunks.length;i++)
-    {
+    for (let i:number=0;i<allChunks.length;i++) {
         let fc:FileChunk = meta.chunks[i] ;
         let contents:Buffer = await fetchChunk(fc.cid) ; 
-        if (contents.byteLength>0)
-        {
+        if (contents.byteLength>0) {
             allChunks[fc.sequence] = contents ;
         }
-        else
-        {
+        else {
             isok = false ;
             console.log("Could not fetch data for part " , i) ;
         }
     }
 
-    if (isok)
-    {
+    if (isok) {
         var joinedBuff = Buffer.concat(allChunks);
         saveFile(joinedBuff, "DOWNLOADED-" + meta.fileName) ;
     }
 
 }
-
-
-
 
 
 const saveFile = (buff, fileName) => {

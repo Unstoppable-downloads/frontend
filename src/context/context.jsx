@@ -40,7 +40,7 @@ export const AceProvider = ({ children }) => {
 
 
 
-  const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
+  const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === 'true';
 
   const auth = "Basic " + Buffer.from(
     process.env.REACT_APP_INFURA_ID +
@@ -168,7 +168,7 @@ export const AceProvider = ({ children }) => {
       //redirect: "follow"
     };
 
-    if (url.indexOf('cloudflare') == -1 && url.indexOf('pinata') == -1) {
+    if (url.indexOf('cloudflare') === -1 && url.indexOf('pinata') === -1) {
       //options.headers =  {"Access-Control-Allow-Origin": ["*"] }
     }
     try {

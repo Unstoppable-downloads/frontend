@@ -1,9 +1,10 @@
 import { AceContext } from "../../context/context";
 import React, { useContext, useEffect } from "react";
-
+import JSZip from "jszip";
 import * as bufferUtils from "../../utils/BufferUtils.ts";
 import FileChunk from "../../shared/FileChunk.ts";
 import MetaData from "../../shared/metadata.ts";
+// import { compressArrayBuffer } from "../../utils/compress";
 import { fixObservableSubclass } from "@apollo/client/utilities";
 import * as constants from "../../shared/constants";
 
@@ -130,14 +131,12 @@ export async function uploadFileToIpfs(file: File, onStatusChanged: Function): P
   let fileUid: string = uuidv4().replaceAll('-', '');
 
 
-
   let meta = new MetaData();
   meta.fileName = file.name;
   meta.fileSize = arrayBuffer.byteLength;
   meta.category = ["e-book"];
   meta.hash = readResult.hash;
   meta.uid = fileUid;
-
 
   //console.log("chunks", chunks, "chunkSize", chunkSize, "fileLength", fileLength, "chunks", chunks);
 
@@ -201,12 +200,21 @@ export async function uploadFileToIpfs(file: File, onStatusChanged: Function): P
 }
 
 export async function getBufferAndChunksFromFile(file: File) {
+  console.log("File size", file.size)
+  
   const readResult: any = await readFile(file);
 
   let arrayBuffer: ArrayBuffer = readResult.bytes;
-
+  console.log("arrayBuffer", arrayBuffer)
   let chunkSize = constants.MAX_PART_SIZE_MB * 1024 * 1024;
   let fileLength = arrayBuffer.byteLength;
+  console.log("fileLength before compress", fileLength)
+
+  // if (file.size > 157286400) {
+  //   const compressedArrayBuffer = await compressArrayBuffer(arrayBuffer);
+  //   console.log("fileLength after compress", compressedArrayBuffer.byteLength);
+  // }
+  
 
 
   if (fileLength < chunkSize) {

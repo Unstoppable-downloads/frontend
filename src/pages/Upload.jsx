@@ -27,8 +27,8 @@ function Upload() {
     onStatusChanged("")
   })
   useEffect(() => {
-
   }, [statusWidth])
+  useEffect(() => {}, [numberOfChunks])
 
   
   const onStatusChanged = (newStatus) => {
@@ -70,15 +70,14 @@ function Upload() {
       <div className="relative flex flex-col mx-auto py-m items-center justify-center">
         <div className="flex">
           <SendForm statusChangedHandler={onStatusChanged} />
-        </div> 
-        <div id="statusBarContainer" className="hidden w-64 bg-gray-200 rounded-l-full rounded-r-full items-center m-8">
-          <div id="statusBar" className="pgbr bg-iexyellow text-base font-medium text-iexblk text-center p-0.5 leading-none h-4">90%</div>
         </div>
-        {/* <div id="statusDiv">
-          
-        </div> */}
+        {numberOfChunks > 0 && (
+          <div className="mt-8">Uploading to IPFS...</div>
+        )}
+        <div id="statusBarContainer" className="hidden w-64 bg-gray-200 rounded-l-full rounded-r-full items-center m-3">
+          <div id="statusBar" className="pgbr bg-iexyellow text-base font-medium text-iexblk text-center p-1 leading-none h-5">90%</div>
+        </div>
       </div>
-        
     </>
   )
 }

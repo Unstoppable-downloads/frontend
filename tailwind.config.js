@@ -18,6 +18,8 @@ module.exports = {
         s: "30px",
         m: "60px",
         l: "90px",
+        xl: "120px",
+        "2xl": "240px"
       },
       fontFamily: {
         logo: ["Space Mono"],
