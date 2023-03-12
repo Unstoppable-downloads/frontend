@@ -41,38 +41,61 @@ function Details() {
       </Helmet>
 
       <div className="flex">
-        <div className="w-full">
+        <div className="w-full mr-m">
           {detailFile && (
             <>
-              <div className="flex">
+              <div className="flex mb-8">
                 {detailFile.imdbImageUrl && (
-                  <img className="w-2xl object-scale-down" src={detailFile.imdbImageUrl} alt="Image" />
+                  <img className="w-2xl object-scale-down mr-8" src={detailFile.imdbImageUrl} alt="Image" />
                 )}
                 <div className="flex flex-col">
-                  <h1 className="mb-4 text-4xl font-bold">{detailFile.title}</h1>
+                  <h1 className="mb-3 text-5xl font-bold">{detailFile.title}</h1>
                   {detailFile.directedBy && (
-                    <p className="my-4">Directed by {detailFile.directedBy}</p>
+                    <p className="my-3">Directed by {detailFile.directedBy}</p>
                   )}
-                  <p className="my-4">{detailFile.description}</p>
+                  {detailFile.starring && (
+                    <p className="my-3">Starring {detailFile.starring}</p>
+                  )}
+                  <p className="my-3">{detailFile.description}</p>
                   {detailFile.year && (
-                    <p className="mt-4">Year{detailFile.year}</p>
+                    <p className="my-3">Year {detailFile.year}</p>
+                  )}
+                  <p className="my-3 italic">{detailFile.category}</p>
+                  {detailFile.imdb && (
+                    <p className="my-4">IMDB {detailFile.imdb}</p>
                   )}
                 </div>
               </div>
-              <p className="my-4">Filename: {detailFile.fileName}</p>
-              {detailFile.starring && (
-                <p className="my-4">Starring: {detailFile.starring}</p>
-              )}
-              <p className="my-4">Chunks: {detailFile.chunks.length}</p>
-              <p className="my-4">Number of Downloads: {detailFile.nbDownloads}</p>
-              <p className="my-4">Category {detailFile.category}</p>
-              {detailFile.imdb && (
-                <p className="my-4">IMDB {detailFile.imdb}</p>
-              )}
-              <p className="my-4">
-                Size: {sizeToReadableSize(detailFile.fileSize)[0]} {sizeToReadableSize(detailFile.fileSize)[1]}
-              </p>
+            
               {console.log(detailFile.imdbImageUrl)}
+              <table className="container w-full table-auto border-collapse">
+                <thead>
+                  <tr>
+                    <th className="text-center">Filename</th>
+                    <th className="text-center">Number of downloads</th>
+                    <th className="text-center">Chunks</th>
+                    <th className="text-center">Size</th>
+                    <th className="text-center px-8">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="text-center">
+                    <td>{detailFile.fileName}</td>
+                    <td>{detailFile.nbDownloads}</td>
+                    <td>{detailFile.chunks.length}</td>
+                    <td>{sizeToReadableSize(detailFile.fileSize)[0]} {sizeToReadableSize(detailFile.fileSize)[1]}</td>
+                    <td>
+                      <button
+                        className="btn h-6 font-bold"
+                        id="btn"
+                      >
+                        Download
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
             </>
           )}
           {/* <h1 className="text-3xl">{detailFile.title}</h1>
