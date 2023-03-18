@@ -38,8 +38,9 @@ const SideBar = () => {
                       //sessionStorage.setItem("")
                     }}
                   >
-                    <div key={i} className="my-3 text-iexyellow">
-                      {file.fileName}
+                    <div key={i} className="my-3 text-iexyellow flex flex-col">
+                      {file.title}
+                      <span className="text-xs text-iexwhite">{file.fileName}</span>
                     </div>
                   </NavLink>
                 );

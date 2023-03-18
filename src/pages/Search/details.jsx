@@ -53,8 +53,18 @@ function Details() {
                   {detailFile.directedBy && (
                     <p className="my-3">Directed by {detailFile.directedBy}</p>
                   )}
-                  {detailFile.starring && (
-                    <p className="my-3">Starring {detailFile.starring}</p>
+                  {detailFile.casts && (
+                    <p className="my-3">Starring {detailFile.casts.map((actor) => {
+                      return (
+                        <a 
+                          href={actor.actorImdb} 
+                          key={actor}
+                        >
+                          <span className="underline">{actor.actorName}</span>
+                          ,{" "}
+                        </a>
+                      )
+                    })}...</p>
                   )}
                   <p className="my-3">{detailFile.description}</p>
                   {detailFile.year && (
@@ -66,7 +76,9 @@ function Details() {
                   )}
                 </div>
               </div>
-            
+              { detailFile.imdbRessourceUrl && (
+                <p><a href={detailFile.imdbRessourceUrl}>View on IMDB</a></p>
+              )}
               {console.log(detailFile.imdbImageUrl)}
               <table className="container w-full table-auto border-collapse">
                 <thead>

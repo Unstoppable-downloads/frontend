@@ -57,7 +57,7 @@ function Research() {
                         <td>{file.nbDownloads}</td>
                         <td>
                           <button className="btn h-6">
-                            <NavLink to={`/details/${file.uid}`}
+                            <NavLink to={`details/${file.uid}`}
                               relative="path"
                               onClick={() => {
                                 console.log(file.uid)
