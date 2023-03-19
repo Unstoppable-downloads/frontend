@@ -11,14 +11,17 @@ const Home = () => {
       <Helmet>
         <title>{APP_NAME} | Home</title>
       </Helmet>
-
-      <div className="mx-auto flex w-full flex-col items-center justify-center text-center">
+      <div className="landing-page-container">
+      <div className="mx-auto flex w-full flex-col items-center justify-center text-center h-full">
         <img src={require("../assets/usdl.png")} alt="USDL logo" className="h-44" />
         <h1 className="my-4 text-8xl font-bold">Unstoppable Downloads</h1>
-        <p className="my-8 text-2xl">
-          Break free from takedowns, embrace unlimited uploads!
-        </p>
-        <div className="mt-8 flex w-full">
+        <div className="flex flex-col h-max my-4">
+          <p className="my-4 text-2xl">
+            Break free from takedowns, embrace unlimited uploads!
+          </p>
+          <p className="my-4 text-xl min-h-full">Introducing USDL, the unyielding content sharing infrastructure developed on the iExec and IPFS platforms. Our mission is to provide individuals with an undeniable right to share any content with their community, free from censorship.</p>
+        </div>
+        <div className="flex w-full">
           <div
             className="mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
             style={{
@@ -70,6 +73,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+      </div>
+
     </>
   );
 };

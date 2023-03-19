@@ -91,6 +91,7 @@ a {
     width:100%
 }
 
+
 .page-container {
     max-width: 1280px;
     display: flex;
@@ -99,6 +100,12 @@ a {
     margin: auto;
     padding: 0 60px;
     min-height: calc(100vh - 105px);
+}
+
+.landing-page-container {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 35px)
 }
 
 .footer-container {
@@ -533,41 +540,6 @@ a {
     margin:0 10px
 }
 
-.mailchimp-block {
-    margin: 0 auto;
-    width:600px
-}
-
-.mailchimp-form {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    justify-content:center
-}
-
-.mailchimp-form .form-title {
-    margin-bottom:20px
-}
-
-.mailchimp-form .field-group {
-    display: flex;
-    flex-direction: column;
-    padding-bottom:3%
-}
-
-.mailchimp-form .field-group label {
-    margin-bottom:3px
-}
-
-.mailchimp-form .field-group input {
-    border: 1px solid #abb0b2;
-    border-radius: 8px;
-    height: 33px;
-    padding: 8px 0;
-    text-indent: 2%;
-    width:100%
-}
-
 .mailchimp-form .asterisk {
     color:#d63838
 }
@@ -601,32 +573,6 @@ a {
 .btn:hover {
     opacity:.8;
     /* background-color: #e9cd67;  */
-}
-
-.page-landing {
-    text-align:center
-}
-
-.page-landing .page-container {
-    max-width:600px
-}
-
-.page-landing h1 {
-    font-size: 44px;
-    margin:25px 0
-}
-
-.page-landing p {
-    line-height:1.4
-}
-
-.page-landing .wrap-flipclock {
-    background-color: #1e1e22;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-    padding:24px 0 16px
 }
 
 @media (max-width: 1400px) {
