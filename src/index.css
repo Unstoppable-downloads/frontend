@@ -147,6 +147,11 @@ a {
     color:#f3f4f2
 }
 
+.gradient {
+    background-color: #38e19e;
+    background-image: linear-gradient(to bottom right, #38e19e, #05c5ef);
+}
+
 
 .progress {
     width: 30px;

@@ -23,10 +23,10 @@ const Home = () => {
         </div>
         <div className="flex w-full">
           <div
-            className="mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
-            style={{
-              backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
-            }}
+            className="gradient mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
+            // style={{
+            //   backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
+            // }}
           >
             <NavLink to="/guides/how-to-share" relative="path">
               <img
@@ -39,10 +39,10 @@ const Home = () => {
           </div>
 
           <div
-            className="mx-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
-            style={{
-              backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
-            }}
+            className="gradient mx-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
+            // style={{
+            //   backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
+            // }}
           >
             <NavLink to="/guides/how-to-index" relative="path">
               <img
@@ -55,10 +55,10 @@ const Home = () => {
           </div>
 
           <div
-            className="ml-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
-            style={{
-              backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
-            }}
+            className="gradient ml-4 flex w-1/3 flex-col rounded-xl bg-iexyellow bg-cover p-8"
+            // style={{
+            //   backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
+            // }}
           >
             <NavLink to="/search" relative="path">
               <img
