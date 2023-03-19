@@ -12,6 +12,7 @@ import Research from "./pages/Search/index";
 import Details from "./pages/Search/details";
 import Home from "./pages/Home";
 import UploadingGuide from "./pages/Guides/Uploading";
+import IndexingGuide from "./pages/Guides/Indexing";
 
 function App() {
   const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
@@ -100,7 +101,8 @@ function App() {
                   <Route exact path="details/*" element={<Details />} />
                 </Route>
                 <Route exact path="/guides">
-                  <Route exact path="how-to-upload" element={<UploadingGuide />} />
+                  <Route exact path="how-to-share" element={<UploadingGuide />} />
+                  <Route exact path="how-to-index" element={<IndexingGuide />} />
                 </Route>
               </Routes>
             </main>

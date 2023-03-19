@@ -17,31 +17,21 @@ const Home = () => {
         <p className="my-8">Find and download any file at any time !</p>
         <div className="mt-8 flex w-full">
           <div className="mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
-            <NavLink to="/guides/how-to-upload" relative="path">
-              <img
-                src={require("../assets/uploading-logo.png")}
-                alt="Upload"
-                className="mx-auto h-32"
-              />
+            <NavLink to="/guides/how-to-share" relative="path">
+              <img src={require("../assets/uploading-logo.png")} alt="Upload" className="mx-auto h-32" />
               <h2 className="text-iexblk">I want to share content</h2>
             </NavLink>
           </div>
-          <div className="mx-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold text-iexblk">
-            <img
-              src={require("../assets/indexing-logo.png")}
-              alt="Upload"
-              className="mx-auto h-32"
-            />
-            <h2>I want to index content</h2>
+          <div className="mx-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
+            <NavLink to="/guides/how-to-index">
+              <img src={require("../assets/indexing-logo.png")} alt="Index" className="mx-auto h-32" />
+              <h2 className="text-iexblk">I want to index content</h2>
+            </NavLink>
           </div>
 
           <div className="ml-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
             <NavLink to="/search" relative="path">
-              <img
-                src={require("../assets/downloading-logo.png")}
-                alt="Upload"
-                className="mx-auto h-32"
-              />
+              <img src={require("../assets/downloading-logo.png")} alt="Upload" className="mx-auto h-32" />
               <h2 className="text-iexblk">I want to download content</h2>
             </NavLink>
           </div>
