@@ -49,7 +49,7 @@ const NavBar = () => {
               <NavLink to="/" relative="path">
                 <div className="flex">
                   <img src={require("../assets/usdl.png")} alt="USDL logo" className="app-logo" />
-                  <div className="logo-container h-6 flex-none text-left font-logo text-xl not-italic">
+                  <div className="logo-container h-6 flex-none text-left font-logo logo-text not-italic">
                     Unstoppable Downloads
                   </div>
                 </div>

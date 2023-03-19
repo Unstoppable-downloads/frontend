@@ -127,6 +127,11 @@ a {
     width:12em
 }
 
+.logo-text {
+    font-size: 1.25rem;
+    line-height: 0.3rem;
+}
+
 .top-navigation ul li {
     margin-left: 15px;
     margin-right: 15px;
@@ -282,11 +287,6 @@ a {
     transition:background-color .2s ease-in
 }
 
-.card:hover .card-logo {
-    opacity: .65;
-    transition:opacity .4s ease-in
-}
-
 .e, .f {
     grid-column: span 2;
     grid-row:span 2
@@ -408,12 +408,6 @@ a {
     display: inline-block;
     font-size: 15px;
     vertical-align:top
-}
-
-.card-logo {
-    font-size: 35px;
-    opacity: .3;
-    transition:opacity .4s ease-in
 }
 
 .users-logo {
