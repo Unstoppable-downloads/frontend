@@ -8,7 +8,7 @@ import StepBar from '../components/StepBar';
 const APP_NAME = process.env.REACT_APP_NAME;
 
 function Upload() {
-  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, checkFileAvailability, backgroundIsLight, numberOfChunks } = useContext(AceContext);
+  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, numberOfChunks } = useContext(AceContext);
   
 
   const [message, setMessage] = useState("")
