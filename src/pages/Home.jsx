@@ -14,7 +14,7 @@ const Home = () => {
 
       <div className="mx-auto flex w-full flex-col items-center justify-center text-center">
         <h1 className="text-8xl font-bold">Unstoppable Downloads</h1>
-        <p className="my-8">Find and download any file at any time !</p>
+        <p className="my-8">No more takedowns, only uploads!</p>
         <div className="mt-8 flex w-full">
           <div className="mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
             <NavLink to="/guides/how-to-share" relative="path">
