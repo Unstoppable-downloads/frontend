@@ -1,52 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { NavLink } from "react-router-dom";
 import { AceContext } from "../context/context";
 const APP_NAME = process.env.REACT_APP_NAME;
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == 'true';
+const IS_DEBUG = process.env.REACT_APP_IS_DEBUG == "true";
 
 const Home = () => {
-
-  const { connectedAccount } = useContext(AceContext);
-
-  const WAITING_FOR_REQUEST = 0;
-  const REQUESTING = 1;
-  const READY_FOR_DOWNLOAD = 2;
-  const STATUS_OPEN_ORDER = "open";
-  const STATUS_COMPLETED_ORDER = "COMPLETED";
-  const STATUS_ACTIVE_ORDER = "ACTIVE";
-
-
-
   return (
     <>
       <Helmet>
-        <title>{APP_NAME} | Sent items</title>
+        <title>{APP_NAME} | Home</title>
       </Helmet>
-      <div className="py-m mx-8">
-        <h1 class="table-title">Recent uploads</h1>
 
-        <table className="w-full border-collapse max-w-full container table-auto">
-          <thead>
-            <tr>
-              <th className="text-center">Date</th>
-              <th className="text-center">Name</th>
-              <th className="text-center">Size</th>
-              <th className="text-center">Category</th>
-              <th className="text-center">Status</th>
-              <th className="text-center px-8">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="mx-auto flex w-full flex-col items-center justify-center text-center">
+        <h1 className="text-8xl font-bold">Unstoppable Downloads</h1>
+        <p className="my-8">Find and download any file at any time !</p>
+        <div className="mt-8 flex w-full">
+          <div className="mr-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
+            <NavLink to="/guides/how-to-upload" relative="path">
+              <img
+                src={require("../assets/uploading-logo.png")}
+                alt="Upload"
+                className="mx-auto h-32"
+              />
+              <h2 className="text-iexblk">I want to share content</h2>
+            </NavLink>
+          </div>
+          <div className="mx-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold text-iexblk">
+            <img
+              src={require("../assets/indexing-logo.png")}
+              alt="Upload"
+              className="mx-auto h-32"
+            />
+            <h2>I want to index content</h2>
+          </div>
 
-            <tr class="text-center">
-                <td colSpan={6}>No sent item found.</td>
-            </tr>
-
-          </tbody>
-        </table>
+          <div className="ml-4 flex w-1/3 flex-col rounded-xl bg-iexyellow p-4 font-bold">
+            <NavLink to="/search" relative="path">
+              <img
+                src={require("../assets/downloading-logo.png")}
+                alt="Upload"
+                className="mx-auto h-32"
+              />
+              <h2 className="text-iexblk">I want to download content</h2>
+            </NavLink>
+          </div>
+        </div>
       </div>
     </>
-
   );
 };
 

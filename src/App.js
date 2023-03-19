@@ -10,6 +10,8 @@ import Modal from "./components/Modal/Modal";
 import { toggleModal } from "./components/Modal/ModalController";
 import Research from "./pages/Search/index";
 import Details from "./pages/Search/details";
+import Home from "./pages/Home";
+import UploadingGuide from "./pages/Guides/Uploading";
 
 function App() {
   const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
@@ -70,8 +72,8 @@ function App() {
       className="min-h-screen bg-contain bg-center text-iexwhite"
       id="app"
       style={{
-        backgroundImage: creativeMode ? `url(${bgUrls.full})` : "",
-        backgroundColor: creativeMode ? "" : "#0d0d12",
+        backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
+        //backgroundColor: creativeMode ? "" : "#0d0d12",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -84,7 +86,7 @@ function App() {
           <div className="page-container">
             <main className="w-full text-iexwhite">
               <Routes>
-                <Route path="/" element={<Research />} />
+                <Route path="/" element={<Home />} />
                 <Route
                   path="/upload"
                   element={
@@ -96,6 +98,9 @@ function App() {
                 <Route exact path="/search">
                   <Route exact path="" element={<Research />} />
                   <Route exact path="details/*" element={<Details />} />
+                </Route>
+                <Route exact path="/guides">
+                  <Route exact path="how-to-upload" element={<UploadingGuide />} />
                 </Route>
               </Routes>
             </main>

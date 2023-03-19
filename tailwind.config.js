@@ -11,7 +11,7 @@ module.exports = {
         iexyellow: "#fcd15a",
         iexwhite: "#f1f2f0",
         nav: "#8c8c90",
-        sidebar: "#18181f"
+        sidebar: "#18181f",
       },
       spacing: {
         xs: "15px",
@@ -19,7 +19,7 @@ module.exports = {
         m: "60px",
         l: "90px",
         xl: "120px",
-        "2xl": "240px"
+        "2xl": "240px",
       },
       fontFamily: {
         logo: ["Space Mono"],
@@ -28,19 +28,23 @@ module.exports = {
         "2/10": "20%",
       },
       borderRadius: {
-        "lg": "9px",
+        lg: "9px",
+        xl: "12px",
       },
       height: {
-        "6": "24px",
-        "8": "32px",
-        "1/10": "10%"
+        6: "24px",
+        8: "32px",
+        "1/10": "10%",
       },
       minHeight: {
-        "8": "32px",
+        8: "32px",
       },
       fontSize: {
-        "l": "15px",
+        l: "15px",
         xl: ["1.3rem", "0.2rem"],
+        "2xl": ["1.5rem", "2rem"],
+        "4xl": ["2.25rem", "2.5rem"],
+        "7xl": ["4.5rem", "1"],
       },
     },
   },

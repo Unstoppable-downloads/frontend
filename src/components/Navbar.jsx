@@ -34,15 +34,15 @@ const NavBar = () => {
         <div className="top-container">
           <div className="flex items-center">
           <img src="/logo512.png" className="app-logo"  /><div className="logo-container h-6 flex-none text-left font-logo text-xl not-italic">
-             UNSTOPPABLE Downloads
+             Unstoppable Downloads
             </div>
             <nav className="top-navigation">
               <ul className="flex list-none">
                 <li>
-                <NavLink to="/" relative="path">Home</NavLink> 
+                <NavLink to="/search" relative="path">Search</NavLink> 
                 </li>
                 <li>
-                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Inbox</span>)}
+                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
                 </li>
                 <li>
                 {connectedAccount ? (<NavLink to="/#" relative="path">Settings</NavLink> ): (<span onClick={showModalNotConnected}>Settings</span>)}
