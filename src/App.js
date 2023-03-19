@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Upload from "./pages/Upload";
 import { AceContext } from "./context/context";
@@ -67,6 +67,7 @@ function App() {
       });
     }
   };
+
 
   return (
     <div

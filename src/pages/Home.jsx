@@ -13,6 +13,7 @@ const Home = () => {
       </Helmet>
 
       <div className="mx-auto flex w-full flex-col items-center justify-center text-center">
+        <img src={require("../assets/logo.png")} alt="USDL logo" className="h-56" />
         <h1 className="text-8xl font-bold">Unstoppable Downloads</h1>
         <p className="my-8">Break free from takedowns, embrace unlimited uploads!</p>
         <div className="mt-8 flex w-full">

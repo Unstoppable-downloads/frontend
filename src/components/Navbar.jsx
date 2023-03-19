@@ -1,6 +1,6 @@
 import { disconnect } from "process";
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { AceContext } from "../context/context";
 import { shortenAddress } from "../utils/shortenAddress";
 import { copyTextToClipboard } from "../utils/copyToClipboard";
@@ -27,64 +27,71 @@ const NavBar = () => {
     setModalContent("navbar-modal", "Connection is required ❌", "Please connect your wallet to acces this menu option!", true) ; 
   });
 
-  return (
-    <>
-    <Modal id="navbar-modal" closeHand/>
-      <div className="flex w-full items-center justify-center bg-iexblk">
-        <div className="top-container">
-          <div className="flex items-center">
-          <img src="/logo512.png" className="app-logo"  /><div className="logo-container h-6 flex-none text-left font-logo text-xl not-italic">
-             Unstoppable Downloads
-            </div>
-            <nav className="top-navigation">
-              <ul className="flex list-none">
-                <li>
-                <NavLink to="/search" relative="path">Search</NavLink> 
-                </li>
-                <li>
-                {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
-                </li>
-                <li>
-                {connectedAccount ? (<NavLink to="/#" relative="path">Settings</NavLink> ): (<span onClick={showModalNotConnected}>Settings</span>)}
-                </li>
-                <li></li>
-              </ul>
-            </nav>
-          </div>
-          <div>
-            &nbsp;
-          </div>
-          {/* <div className="cursor-pointer" onClick={() => window.open("https://t.me/ace_ft_bot")}> */}
-            {/* <NavLink to="/settings" relative="path"> */}
-              {/* <img src="/tg.png" className="tg-logo" />
-              &nbsp;Settings */}
-            {/* </NavLink> */}
-          {/*</div> */}
-          <div className="flex max-w-2/10 basis-1/5">
-            {connectedAccount ? (
+  const { pathname } = useLocation()
 
-              <div className="ml-auto items-center" >
-
-              <ReactTooltip multiline="true" />
-                <p className="ml-8 text-right clickable" data-tip="Click to copy" id="walletAddressContainer"
-                   onClick={copyAddressToClipboard}  
-                >
-                  Hello! {shortenAddress(connectedAccount)} 👋
-                </p>
+  if (pathname === "/") {
+    return null;
+  } else {
+    return (
+      <>
+      <Modal id="navbar-modal" closeHand/>
+        <div className="flex w-full items-center justify-center bg-iexblk">
+          <div className="top-container">
+            <div className="flex items-center">
+            <img src="/logo512.png" className="app-logo"  /><div className="logo-container h-6 flex-none text-left font-logo text-xl not-italic">
+               Unstoppable Downloads
               </div>
-            ) : (
-              <button
-                className="btn ml-auto h-8 text-l font-bold"
-                onClick={connectWallet}
-              >
-                Connect Wallet
-              </button>
-            )}
+              <nav className="top-navigation">
+                <ul className="flex list-none">
+                  <li>
+                  <NavLink to="/search" relative="path">Search</NavLink> 
+                  </li>
+                  <li>
+                  {connectedAccount ? (<NavLink to="/upload" relative="path">Upload</NavLink> ): (<span onClick={showModalNotConnected}>Upload</span>)}
+                  </li>
+                  <li>
+                  {connectedAccount ? (<NavLink to="/#" relative="path">Settings</NavLink> ): (<span onClick={showModalNotConnected}>Settings</span>)}
+                  </li>
+                  <li></li>
+                </ul>
+              </nav>
+            </div>
+            <div>
+              &nbsp;
+            </div>
+            {/* <div className="cursor-pointer" onClick={() => window.open("https://t.me/ace_ft_bot")}> */}
+              {/* <NavLink to="/settings" relative="path"> */}
+                {/* <img src="/tg.png" className="tg-logo" />
+                &nbsp;Settings */}
+              {/* </NavLink> */}
+            {/*</div> */}
+            <div className="flex max-w-2/10 basis-1/5">
+              {connectedAccount ? (
+  
+                <div className="ml-auto items-center" >
+  
+                <ReactTooltip multiline="true" />
+                  <p className="ml-8 text-right clickable" data-tip="Click to copy" id="walletAddressContainer"
+                     onClick={copyAddressToClipboard}  
+                  >
+                    Hello! {shortenAddress(connectedAccount)} 👋
+                  </p>
+                </div>
+              ) : (
+                <button
+                  className="btn ml-auto h-8 text-l font-bold"
+                  onClick={connectWallet}
+                >
+                  Connect Wallet
+                </button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+
 };
 
 export default NavBar;
