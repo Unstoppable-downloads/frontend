@@ -1035,6 +1035,7 @@ table {
 .app-logo
 {
     width: 2.2rem !important;
+    height: 2.2rem !important;
     display: inline !important;
     vertical-align: middle !important;
     margin-right: 12px;

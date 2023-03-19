@@ -8,8 +8,9 @@ const Footer = () => {
           <footer>
             <div className="justify-center mx-auto flex text-iexblk basis-1/3">
               <div className="mx-auto flex items-center font-logo text-base">
-                <p className="mx-2 text-center">Powered by iExec</p>
+                <p className="mx-3 text-center">Powered by </p>
                 <img src={require("../assets/cropped-favicon-192x192.png")} alt="iExec logo" className="h-5" />
+                <p className="mx-1 text-center">iExec</p>
               </div>
             </div>
           </footer>

@@ -48,7 +48,7 @@ const NavBar = () => {
             <div className="flex items-center">
               <NavLink to="/" relative="path">
                 <div className="flex">
-                  <img src={require("../assets/logo.png")} alt="USDL logo" className="app-logo" />
+                  <img src={require("../assets/usdl.png")} alt="USDL logo" className="app-logo" />
                   <div className="logo-container h-6 flex-none text-left font-logo text-xl not-italic">
                     Unstoppable Downloads
                   </div>
