@@ -12,6 +12,7 @@ module.exports = {
         iexwhite: "#f1f2f0",
         nav: "#8c8c90",
         sidebar: "#18181f",
+        main: "#10c8e8"
       },
       spacing: {
         xs: "15px",
@@ -40,9 +41,10 @@ module.exports = {
         8: "32px",
       },
       fontSize: {
-        l: "15px",
-        xl: ["1.25rem", "1.75rem"],
-        "2xl": ["1.5rem", "2rem"],
+        "base":["1rem", "1.5rem"],
+        l: "16px",
+        xl: ["20px", "28px"],
+        "2xl": ["24px", "32px"],
         "4xl": ["2.25rem", "2.5rem"],
         "7xl": ["4.5rem", "1"],
       },

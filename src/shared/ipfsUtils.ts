@@ -77,7 +77,7 @@ export const checkFileAvailability = async (url, _callback) => {
 };
 
 
-const getIPFS = async function () {
+export const getIPFS = async function () {
   /*
     config: { Addresses: { Swarm: [
       // These are public webrtc-star servers

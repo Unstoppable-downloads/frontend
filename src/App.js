@@ -74,8 +74,8 @@ function App() {
       className="min-h-screen bg-contain bg-center text-iexwhite"
       id="app"
       style={{
-        backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
-        //backgroundColor: creativeMode ? "" : "#0d0d12",
+        // backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
+        backgroundColor: "#f1f0f3",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

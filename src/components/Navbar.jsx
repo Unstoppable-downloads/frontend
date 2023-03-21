@@ -37,7 +37,7 @@ const NavBar = () => {
 
   const { pathname } = useLocation();
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/guides/how-to-share") {
     return null;
   } else {
     return (
