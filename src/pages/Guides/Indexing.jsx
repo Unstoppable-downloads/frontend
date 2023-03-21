@@ -9,6 +9,12 @@ import { Link, NavLink } from "react-router-dom";
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const IndexingGuide = () => {
+  useEffect(() => {
+    console.log(document.getElementById("app"))
+    document.getElementById("app").style.backgroundColor = "#f1f0f3"
+    document.getElementById("app").style.backgroundImage = null
+  }, [])
+
   return (
     <>
       <Helmet>

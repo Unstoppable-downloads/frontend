@@ -1,11 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Helmet } from "react-helmet";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { AceContext } from "../context/context";
 const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 const Home = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      console.log(document.getElementById("app"))
+      document.getElementById("app").style.backgroundImage = `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`
+    }
+  }, [])
+
   return (
     <>
       <Helmet>

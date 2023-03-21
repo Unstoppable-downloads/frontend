@@ -84,7 +84,8 @@ function App() {
       <Modal id="app-modal" />
       <Router>
         <NavBar />
-        <div className="w-full">
+
+        < div className="w-full">
           <div className="page-container">
             <main className="w-full text-iexwhite">
               <Routes>

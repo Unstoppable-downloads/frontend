@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useLocation } from 'react';
 import { Helmet } from 'react-helmet';
 import SendForm from "../components/Upload/SendForm";
 import { AceContext } from '../context/context';
@@ -20,6 +20,9 @@ function Upload() {
     )
   }
 
+  useEffect(()=> {
+    
+  }, [])
   useEffect(() => {
     writeStatus(state)
   }, [state])
@@ -61,6 +64,15 @@ function Upload() {
   for (let i = 0; i < numberOfChunks; i++) {
     chunksBullet.push(<div className="mx-8 rounded-full bg-iexyellow w-5 h-5"></div>)
   }
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (pathname === "/") {
+      console.log(document.getElementById("app"))
+      document.getElementById("app").style.backgroundColor = "#f1f0f3";
+      document.getElementById("app").style.backgroundImage = null;
+    }
+  }, [])
 
   return (
     <>

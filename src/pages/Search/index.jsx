@@ -16,6 +16,13 @@ function Research() {
   }, [filesSearched])
   useEffect(() => {setDetailFile()})
 
+
+  useEffect(() => {
+    console.log(document.getElementById("app"))
+    document.getElementById("app").style.backgroundColor = "#f1f0f3"
+    document.getElementById("app").style.backgroundImage = null
+  }, [])
+
   return (
     <>
       <Helmet>

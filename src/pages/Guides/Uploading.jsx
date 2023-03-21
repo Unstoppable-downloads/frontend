@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { AceContext } from "../../context/context";
 import crypto from "crypto-browserify";
 import { numberOfChunks } from "../../components/Upload/uploader.ts";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { getIPFS } from "../../shared/ipfsUtils.ts";
 import GuidesSidebar from "../../components/GuidesSidebar";
 
@@ -38,6 +38,15 @@ const UploadingGuide = () => {
     sendHelloWorld();
   }, [ipfsAvailable]);
 
+
+  const { pathname } = useLocation()
+  useEffect(() => {
+    if (pathname !== "/") {
+      console.log(document.getElementById("app"))
+      document.getElementById("app").style.backgroundColor = "#f1f0f3"
+      document.getElementById("app").style.backgroundImage = null
+    }
+  }, [])
   return (
     <>
       <Helmet>
