@@ -30,16 +30,16 @@ const IndexingGuide = () => {
         </div>
 
         <div className="mx-auto ml-m flex w-full flex-col justify-center text-iexblk">
-          <h2 className="mt-16 mb-4 text-5xl font-bold text-iexblk">
+          <h2 className="mt-16 mb-4 text-5xl font-bold">
             File indexing service setup
           </h2>
           <div className="mt-4 flex w-full flex-col items-start text-left">
             <div className="flex flex-col">
               <h3 className="text-3xl">Introduction</h3>
               <p className="mt-4 mb-8">
-                The role of the indexer is to locate the files on the
-                blockchain, in order to find and access them. In this
-                documentation, we will guide you through the steps required to
+                {/* The role of the indexer is to locate the files on the
+                blockchain, in order to find and access them.  */}
+                In this documentation, we will guide you through the steps required to
                 launch USDL's indexing service.
               </p>
               <h3 className="text-3xl">Prerequisites</h3>
@@ -47,9 +47,10 @@ const IndexingGuide = () => {
                 Before you begin, please ensure that you have the following
                 prerequisites:
                 <br />
-                Docker installed and properly configured for your operating
+              
+                - Docker installed and properly configured for your operating
                 system.
-                <br />A local wallet installed and configured to interact with
+                <br />- A local wallet installed and configured to interact with
                 the Ethereum network. If you do not have a local wallet, you can
                 install and use the iExec SDK to create one.
               </p>
@@ -75,7 +76,7 @@ const IndexingGuide = () => {
               <h3 className="text-3xl" id="clone">Step 3: Git Clone the Repo</h3>
               <p  className="mt-4 mb-8">
                 Next, you will need to clone the indexer{" "}
-                <a href="https://github.com/Unstoppable-downloads/indexer.git">
+                <a href="https://github.com/Unstoppable-downloads/indexer.git" className="text-main">
                   Github repo
                 </a>
               </p>
