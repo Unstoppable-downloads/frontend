@@ -82,7 +82,7 @@ a {
     justify-content: space-between;
     height: 50px;
     margin: 10px 0;
-    padding: 0 120px;
+    padding: 0 60px;
     vertical-align:middle
 }
 
@@ -103,7 +103,7 @@ a {
     align-items: center;
     justify-content:space-between;
     margin: auto;
-    padding: 0 60px;
+    padding: 0 30px;
     min-height: calc(100vh - 105px);
 }
 
@@ -592,7 +592,7 @@ a {
 } */
 @media ((min-width:1121px) and (max-width: 1280px)) {
     .page-container {
-        padding: 0 90px;
+        padding: 0 60px;
         min-height: calc(100vh - 105px);
     }
 }

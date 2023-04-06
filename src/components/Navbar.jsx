@@ -43,19 +43,30 @@ const NavBar = () => {
     return (
       <>
         <Modal id="navbar-modal" closeHand />
-        <div className="flex w-full items-center justify-center bg-iexblk">
+        <div className="flex w-full items-center justify-center text-iexblk border-b border-gray-300">
           <div className="top-container">
             <div className="flex items-center">
               <NavLink to="/" relative="path">
-                <div className="flex">
-                  <img src={require("../assets/usdl.png")} alt="USDL logo" className="app-logo" />
+                <div className="flex items-center">
+                  <img
+                    src={require("../assets/usdl-text.png")}
+                    alt="USDL logo"
+                    className="app-logo-sidebar mr-2"
+                  />
+                  <div className="border-1 h-16 w-full border-l border-iexblk"></div>
+                  <span className="mx-4 text-xl text-iexblk">Guides</span>
+                  {/* <img src={require("../assets/usdl.png")} alt="USDL logo" className="app-logo" />
                   <div className="logo-container h-6 flex-none text-left font-logo logo-text not-italic">
                     Unstoppable Downloads
-                  </div>
+                  </div> */}
                 </div>
               </NavLink>
 
-              <nav className="top-navigation">
+              
+            </div>
+            <div>&nbsp;</div>
+            <div>
+              <nav className="top-navigation mx-16">
                 <ul className="flex list-none">
                   <li>
                     <NavLink to="/search" relative="path">
@@ -80,7 +91,6 @@ const NavBar = () => {
                       <span onClick={showModalNotConnected}>Settings</span>
                     )}
                   </li>
-                  <li></li>
                 </ul>
               </nav>
             </div>

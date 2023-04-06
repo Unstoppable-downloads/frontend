@@ -10,7 +10,7 @@ const GuidesSidebar = () => {
       <aside>
         <div className="flex flex-col">
           <div className="my-4 flex items-center">
-            <NavLink to="/" relative="path">
+            {/* <NavLink to="/" relative="path">
               <div className="flex">
                 <img
                   src={require("../assets/usdl-text.png")}
@@ -21,7 +21,7 @@ const GuidesSidebar = () => {
               </div>
             </NavLink>
 
-            <span className="mx-4 text-xl">Guides</span>
+            <span className="mx-4 text-xl">Guides</span> */}
           </div>
           <ul className="my-2">
             <li className="mb-2">File publishing service setup</li>
