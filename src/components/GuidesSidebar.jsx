@@ -29,6 +29,11 @@ const GuidesSidebar = () => {
               File indexing service setup
               <ul>
                 <li>
+                  <a href="/guides/how-to-index#prerequisites" className="text-iexblk text-sm ml-4">
+                    Prerequisites
+                  </a>
+                </li>
+                <li>
                   <a href="/guides/how-to-index#docker" className="text-iexblk text-sm ml-4">
                     Install Docker
                   </a>

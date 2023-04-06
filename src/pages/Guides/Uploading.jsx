@@ -97,13 +97,13 @@ const UploadingGuide = () => {
               )}
               <h3 className="mt-8 text-3xl">Set up</h3>
             </div>
-            <ol className="list-decimal">
-              <li className="my-3">Download and install IPFS desktop here </li>
-              <li className="my-3">Run IPFS desktop</li>
-              <li className="my-3">Go to settings</li>
-              <li>Scroll to "IPFS CONFIG"</li>
+            <ol>
+              <li className="my-3">1. Download and install IPFS desktop here </li>
+              <li className="my-3">2. Run IPFS desktop</li>
+              <li className="my-3">3. Go to settings</li>
+              <li className="my-3">4. Scroll to "IPFS CONFIG"</li>
               <li className="my-3">
-                Add '*' to the "Access-Control-Allow-Origin" entry in the JSON
+                5. Add '*' to the "Access-Control-Allow-Origin" entry in the JSON
                 file, like below
                 <img
                   src={require("../../assets/ipfs-example.png")}
@@ -112,7 +112,7 @@ const UploadingGuide = () => {
                 />
               </li>
               <li>
-                Make sure your the IPFS desktop node is running on port 5001, by
+                6. Make sure your the IPFS desktop node is running on port 5001, by
                 checking and optionnaly change the API port in the "Addresses"
                 entry
                 <img

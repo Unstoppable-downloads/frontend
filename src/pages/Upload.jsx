@@ -65,15 +65,6 @@ function Upload() {
     chunksBullet.push(<div className="mx-8 rounded-full bg-iexyellow w-5 h-5"></div>)
   }
 
-  const { pathname } = useLocation();
-  useEffect(() => {
-    if (pathname === "/") {
-      console.log(document.getElementById("app"))
-      document.getElementById("app").style.backgroundColor = "#f1f0f3";
-      document.getElementById("app").style.backgroundImage = null;
-    }
-  }, [])
-
   return (
     <>
       <Helmet>
