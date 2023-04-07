@@ -58,7 +58,7 @@ const SearchBar = () => {
         <div className="relative py-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-0 bottom-0 left-3 my-auto h-6 w-6 text-gray-400"
+            className="absolute top-0 bottom-0 left-8 my-auto h-6 w-6 text-gray-400 z-10"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -73,7 +73,7 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="h-32 w-full rounded-l-full rounded-r-full border-2 border-iexblk bg-iexwhite py-3 pl-12 pr-4 text-3xl text-iexblk outline-none focus:border-main focus:bg-iexwhite shadow-lg"
+            className="h-28 w-full rounded-l-full rounded-r-full border-2 border-iexblk bg-iexwhite py-3 pl-16 pr-6 text-3xl text-iexblk outline-none focus:border-main focus:bg-iexwhite hover:drop-shadow-xl"
             onChange={(e) => {
               setsearchTerms(e.target.value);
             }}

@@ -30,7 +30,7 @@ input:checked ~ .toggleEl {
 
 
 :root {
-    --background-color: rgb(13 13 18);
+    --iexec-black: rgb(13 13 18);
     --iexec-yellow: #fcd15a;
     --main: #10c8e8;
     --text-color:#f3f4f2
@@ -44,7 +44,7 @@ html {
 }
 
 #root, body {
-    background-color: var(--background-color);
+    background-color: var(--iexec-black);
     height: 100%;
     min-height:100%
 }
@@ -145,7 +145,7 @@ a {
 }
 
 .top-navigation a {
-    color:#8c8c90
+    color: var(--iexec-black)
 }
 
 .top-navigation a.active {
@@ -191,7 +191,7 @@ a {
 }
 .inprogr {
     background-color: var(--iexec-yellow);
-    color: var(--background-color);
+    color: var(--iexec-black);
 }
 .inprogr + p {
     color: var(--iexec-yellow);
@@ -216,7 +216,7 @@ a {
 .customSlider {
     align-items: center;
     background: #0d0d12;
-    background: var(--background-color);
+    background: var(--iexec-black);
     border-radius: 10px;
     display: flex;
     height: 50px;
@@ -229,7 +229,7 @@ a {
 
 .customSlider-track {
     background: #0d0d12;
-    background: var(--background-color);
+    background: var(--iexec-black);
     border-radius: 10px;
     cursor: pointer;
     height:50px
@@ -240,7 +240,7 @@ a {
     background: var(--iexec-yellow);
     border-radius: 10px;
     color: #0d0d12;
-    color: var(--background-color);
+    color: var(--iexec-black);
     font-weight: 700;
     height: 44px;
     outline: none;
@@ -464,7 +464,7 @@ a {
     background-color: #fcd15a;
     background-color: var(--iexec-yellow);
     color: #0d0d12;
-    color: var(--background-color);
+    color: var(--iexec-black);
     font-family: Mulish, sans-serif;
     font-size: .5em;
     font-weight: 500;
@@ -495,7 +495,7 @@ a {
 .footer {
     align-items: center;
     background-color: #0d0d12;
-    background-color: var(--background-color);
+    background-color: var(--iexec-black);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1003,7 +1003,7 @@ table {
 
 .hidden-navbar-item
 {
-    color: var(--background-color) !important;
+    color: var(--iexec-black) !important;
 }
 
 

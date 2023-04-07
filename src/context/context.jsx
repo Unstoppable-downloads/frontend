@@ -194,7 +194,7 @@ export const AceProvider = ({ children }) => {
   const pushOrder = async (address, requesterrestrict) => {
     try {
       let iexec = getIexec();
-      const order = await iexec.order.createDatasetorder({ dataset: address, volume: 100, apprestrict: ace.APP_ADDRESS, requesterrestrict: requesterrestrict })
+      const order = await iexec.order.createDatasetorder({ dataset: address, volume: 100, apprestrict: process.env.REACT_APP_APP_ADDRESS, requesterrestrict: requesterrestrict })
       if (IS_DEBUG) console.log("Unsigned order", order)
       const signedOrder = await iexec.order.signDatasetorder(order)
       if (IS_DEBUG) console.log("Signed order", signedOrder)
