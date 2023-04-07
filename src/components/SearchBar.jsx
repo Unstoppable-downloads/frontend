@@ -73,13 +73,13 @@ const SearchBar = () => {
           <input
             type="text"
             placeholder="Search"
-            className="h-32 w-full rounded-l-full rounded-r-full border bg-iexwhite py-3 pl-12 pr-4 text-3xl text-iexblk outline-none focus:border-iexyellow focus:bg-iexwhite"
+            className="h-32 w-full rounded-l-full rounded-r-full border-2 border-iexblk bg-iexwhite py-3 pl-12 pr-4 text-3xl text-iexblk outline-none focus:border-main focus:bg-iexwhite shadow-lg"
             onChange={(e) => {
               setsearchTerms(e.target.value);
             }}
           />
         </div>
-        <div className="mx-auto flex items-center justify-center py-4 text-xl">
+        <div className="mx-auto flex items-center justify-center py-4 text-xl text-iexblk">
           <div className="mr-8">
             <input
               type="checkbox"
