@@ -37,13 +37,13 @@ const NavBar = () => {
 
   const { pathname } = useLocation();
 
-  if (pathname === "/" || pathname === "/guides/how-to-share") {
+  if (pathname === "/") {
     return null;
   } else {
     return (
       <>
         <Modal id="navbar-modal" closeHand />
-        <div className="flex w-full items-center justify-center text-iexblk border-b border-gray-300">
+        <div className="flex w-full items-center justify-center text-iexblk border-b border-gray-300 fixed top-0 opacity-100 bg-iexwhite">
           <div className="top-container">
             <div className="flex items-center">
               <NavLink to="/" relative="path">

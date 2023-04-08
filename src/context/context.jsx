@@ -36,6 +36,7 @@ export const AceProvider = ({ children }) => {
   const [filesSearched, setFilesSearched] = useState({});
   const [detailFile, setDetailFile] = useState();
   const [numberOfChunks, setNumberOfChunks] = useState(0);
+  const [backgroundColorIsBlack, setBackgroundColor] = useState(false)
 
 
 
@@ -251,7 +252,9 @@ export const AceProvider = ({ children }) => {
         detailFile,
         setDetailFile,
         numberOfChunks,
-        setNumberOfChunks
+        setNumberOfChunks,
+        backgroundColorIsBlack,
+        setBackgroundColor
       }}
     >
       {children}

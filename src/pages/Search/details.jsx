@@ -40,7 +40,7 @@ function Details() {
         </title>
       </Helmet>
 
-      <div className="flex">
+      <div className="flex page-subcontainer">
         <div className="w-full mr-m">
           {detailFile && (
             <>

@@ -43,7 +43,7 @@ const UploadingGuide = () => {
   useEffect(() => {
     if (pathname !== "/") {
       console.log(document.getElementById("app"))
-      document.getElementById("app").style.backgroundColor = "#f1f0f3"
+      document.getElementById("app").style.backgroundColor = "#f2f1f4"
       document.getElementById("app").style.backgroundImage = null
     }
   }, [])
@@ -52,7 +52,7 @@ const UploadingGuide = () => {
       <Helmet>
         <title>{APP_NAME} | Guide</title>
       </Helmet>
-      <div className="flex">
+      <div className="page-subcontainer flex">
         <div>
           <div className="flex w-max flex-col">
             <div className="text-iexblk">
@@ -61,8 +61,8 @@ const UploadingGuide = () => {
           </div>
         </div>
 
-        <div className="ml-m flex w-full flex-col justify-center text-iexblk">
-          <h2 className="mt-16 mb-4 text-5xl font-bold text-iexblk">
+        <div id="uploading" className="ml-m flex w-full flex-col justify-center text-iexblk">
+          <h2 className="mb-4 text-5xl font-bold text-iexblk">
             File publishing service setup
           </h2>
           <div className="mt-4 flex w-full flex-col items-start text-left">

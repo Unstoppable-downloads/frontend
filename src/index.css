@@ -32,12 +32,14 @@ input:checked ~ .toggleEl {
 :root {
     --iexec-black: rgb(13 13 18);
     --iexec-yellow: #fcd15a;
+    --iexec-white: #f2f1f4;
     --main: #10c8e8;
     --text-color:#f3f4f2
 }
 
 html {
     color: #f3f4f2;
+    background-color: var(--iexec-white);
     font-family: Mulish, sans-serif;
     font-size: .8rem;
     height:100%
@@ -77,13 +79,15 @@ a {
 
 .top-container {
     max-width: 1400px;
+    /* position: fixed;
+    top: 0; */
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
     margin: 10px 0;
     padding: 0 60px;
-    vertical-align:middle
+    vertical-align:middle;
 }
 
 @media only screen and (max-width: 1120px) {
@@ -111,6 +115,10 @@ a {
     display: flex;
     align-items: center;
     min-height: calc(100vh - 35px)
+}
+
+.page-subcontainer {
+    margin-top: 70px;
 }
 
 .footer-container {
@@ -160,7 +168,6 @@ a {
 .code {
     color: var(--text-color);
 }
-
 
 .progress {
     width: 30px;
@@ -247,53 +254,12 @@ a {
     width:45px
 }
 
-.customSlider-mark, .customSlider-thumb {
-    align-items: center;
-    display: flex;
-    font-size: 1.8em;
-    justify-content:center
-}
-
-.customSlider-mark {
-    cursor: pointer;
-    font-weight: 300;
-    padding-left:4px
-}
-
-.customSlider-mark.customSlider-mark-active {
-    display:none
-}
-
 .page {
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 0 70px;
     position:relative
-}
-
-.cards {
-    grid-gap: 20px;
-    display: grid;
-    grid-template-columns:repeat(4, minmax(0, 1fr))
-}
-
-.card {
-    background: rgba(29, 29, 36, .5);
-    border: 1px solid #5d5d69;
-    border-radius: 8px;
-    color: #f3f4f2;
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
-    transition:background-color .4s ease-in
-}
-
-.card:hover {
-    background: rgba(16, 16, 20, .5);
-    transition:background-color .2s ease-in
 }
 
 .e, .f {
@@ -314,11 +280,6 @@ a {
 .h:hover .plus-logo, .h:hover .value-title {
     opacity: .65;
     transition:opacity .4s ease-in
-}
-
-.card-first-row {
-    display: flex;
-    justify-content:space-between
 }
 
 .value-title {
@@ -408,17 +369,6 @@ a {
     justify-content:center
 }
 
-.see-all {
-    font-size: .5em;
-    margin-left:8px
-}
-
-.helper-icon {
-    display: inline-block;
-    font-size: 15px;
-    vertical-align:top
-}
-
 .users-logo {
     font-size:30px
 }
@@ -439,57 +389,6 @@ a {
     align-items: center;
     display: flex;
     flex:1 1
-}
-
-.card-value {
-    font-size: 2.5em;
-    font-weight: 700;
-    margin:20px 0
-}
-
-.card-bottom-value, .card-value {
-    display: flex;
-    justify-content:flex-start
-}
-
-.card-bottom-value {
-    align-items: baseline;
-    font-size: 1.4em;
-    font-weight: 500;
-    margin-top: 10px;
-    opacity:.75
-}
-
-.hint--iexeccolor:after {
-    background-color: #fcd15a;
-    background-color: var(--iexec-yellow);
-    color: #0d0d12;
-    color: var(--iexec-black);
-    font-family: Mulish, sans-serif;
-    font-size: .5em;
-    font-weight: 500;
-    text-shadow: none;
-    width:200px
-}
-
-.hint--iexeccolor.hint--top-left:before, .hint--iexeccolor.hint--top-right:before, .hint--iexeccolor.hint--top:before {
-    border-top-color: #fcd15a;
-    border-top-color:var(--iexec-yellow)
-}
-
-.hint--iexeccolor.hint--bottom:before {
-    border-bottom-color: #fcd15a;
-    border-bottom-color:var(--iexec-yellow)
-}
-
-.hint--iexeccolor.hint--left:before {
-    border-left-color: #fcd15a;
-    border-left-color:var(--iexec-yellow)
-}
-
-.hint--iexeccolor.hint--right:before {
-    border-right-color: #fcd15a;
-    border-right-color:var(--iexec-yellow)
 }
 
 .footer {
@@ -608,10 +507,6 @@ a {
         font-size:2.3em
     }
 
-    .cards {
-        grid-template-columns:repeat(2, minmax(0, 1fr))
-    }
-
     .page, .top {
         padding:0 35px
     }
@@ -634,10 +529,6 @@ a {
 
     .page, .top {
         padding:0 10px
-    }
-
-    .cards {
-        grid-template-columns:repeat(1, minmax(0, 1fr))
     }
 
     .e, .f {
@@ -1019,4 +910,16 @@ table {
 .pgbr {
     border-top-left-radius: 9999px;
     border-bottom-left-radius: 9999px;
+}
+
+#sidebar .active {
+    border-left-width: 3px;
+    border-left-color: var(--main);
+}
+#sidebar .active a {
+    color: var(--main);
+    font-weight: 600;
+}
+#uploading, #indexing {
+    margin: 32px 0 0 262px;
 }
