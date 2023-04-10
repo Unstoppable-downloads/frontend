@@ -34,11 +34,11 @@ input:checked ~ .toggleEl {
     --iexec-yellow: #fcd15a;
     --iexec-white: #f2f1f4;
     --main: #10c8e8;
-    --text-color:#f3f4f2
+    --text-color: #f2f1f4;
 }
 
 html {
-    color: #f3f4f2;
+    color: var(--text-color);
     background-color: var(--iexec-white);
     font-family: Mulish, sans-serif;
     font-size: .8rem;
@@ -58,15 +58,11 @@ html {
 }
 
 a {
-    color: #f3f4f2;
+    color: var(--text-color);
     cursor: pointer;
     text-decoration:none
 }
 
-.skeleton {
-    display: flex;
-    flex:1 1
-}
 
 .main-grid {
     grid-gap: 0;
@@ -77,26 +73,36 @@ a {
     padding:0
 }
 
-.top-container {
+.top-container-white {
+    background-color: var(--iexec-white);
+    border-bottom-width: 1px;
+    
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+.top-container-black {
+    color: var(--text-color);
+    background-color: var(--iexec-black);
+}
+
+.top-container-white, .top-container-black {
     max-width: 1400px;
-    /* position: fixed;
-    top: 0; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
-    margin: 10px 0;
-    padding: 0 60px;
-    vertical-align:middle;
+    height: 60px;
+    margin: 0;
+    padding: 0px 60px;
+    vertical-align: middle;
 }
 
 @media only screen and (max-width: 1120px) {
-    .top-container {
+    .top-container-white, .top-container-black {
         padding: 0 1.5rem;
     }
 }
 
-.page-container, .top-container, .footer-container {
+.page-container, .top-container-white, .top-container-black, .footer-container {
     width:100%
 }
 
@@ -135,7 +141,7 @@ a {
 }
 
 .logo {
-    fill: #f3f4f2;
+    fill: var(--text-color);
     margin: 0 20px 0 0;
     width:12em
 }
@@ -152,12 +158,22 @@ a {
     top:-1px
 }
 
-.top-navigation a {
-    color: var(--iexec-black)
+.top-container-white .top-navigation a {
+    color: var(--iexec-black);
+    padding: 12px 4px;
+}
+.top-container-black .top-navigation a {
+    color: var(--text-color);
+    padding: 12px 4px;
 }
 
-.top-navigation a.active {
-    color:#f3f4f2
+.top-container-white .top-navigation a.active {
+    color: var(--text-color)
+}
+.top-container-black .top-navigation a.active {
+    border-bottom-width: 2px;
+    font-weight: 600;
+    border-color: var(--main);
 }
 
 .gradient {
@@ -207,51 +223,9 @@ a {
     background-color: var(--iexec-yellow);
 }
 
-
-
 .one::after {
     width: 0;
     height: 0;
-}
-
-.customSliderContainer {
-    border-radius: 10px;
-    box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, .5);
-    padding:0 3px
-}
-
-.customSlider {
-    align-items: center;
-    background: #0d0d12;
-    background: var(--iexec-black);
-    border-radius: 10px;
-    display: flex;
-    height: 50px;
-    width:140px
-}
-
-.customSlider span:first-of-type {
-    left:5px !important
-}
-
-.customSlider-track {
-    background: #0d0d12;
-    background: var(--iexec-black);
-    border-radius: 10px;
-    cursor: pointer;
-    height:50px
-}
-
-.customSlider-thumb {
-    background: #fcd15a;
-    background: var(--iexec-yellow);
-    border-radius: 10px;
-    color: #0d0d12;
-    color: var(--iexec-black);
-    font-weight: 700;
-    height: 44px;
-    outline: none;
-    width:45px
 }
 
 .page {
@@ -513,12 +487,12 @@ a {
 }
 
 @media (max-width: 750px) {
-    .top-container {
+    .top-container-white, .top-container-black {
         flex-direction:column
     }
 
     .logo {
-        fill: #f3f4f2;
+        fill: var(--text-color);
         margin: 0 0 5px;
         width:10em
     }
@@ -614,72 +588,6 @@ a {
     }
 }
 
-.react-loading-skeleton {
-    --base-color: #ebebeb;
-    --highlight-color: #f5f5f5;
-    --animation-duration: 1.5s;
-    --animation-direction: normal;
-    --pseudo-element-display: block;
-    background-color: var(--base-color);
-    border-radius: .25rem;
-    display: inline-flex;
-    line-height: 1;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    z-index:1
-}
-
-.react-loading-skeleton:after {
-    -webkit-animation-direction: var(--animation-direction);
-    animation-direction: var(--animation-direction);
-    -webkit-animation-duration: var(--animation-duration);
-    animation-duration: var(--animation-duration);
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-name: react-loading-skeleton;
-    animation-name: react-loading-skeleton;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
-    background-image: linear-gradient(90deg, var(--base-color), var(--highlight-color), var(--base-color));
-    background-repeat: no-repeat;
-    content: " ";
-    display: var(--pseudo-element-display);
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    -webkit-transform: translateX(-100%);
-    transform:translateX(-100%)
-}
-
-._qWTcH {
-    --fcc-flip-duration: 0.7s;
-    --fcc-digit-block-width: 46px;
-    --fcc-digit-block-height: 80px;
-    --fcc-digit-font-size: 50px;
-    --fcc-label-font-size: 16px;
-    --fcc-label-color: #f3f4f2;
-    --fcc-background: #0f181a;
-    --fcc-digit-color: #f3f4f2;
-    --fcc-divider-color: #ffffff66;
-    --fcc-divider-height: 1px;
-    --fcc-shadow: 0 0 2px 1px rgba(0, 0, 0, .1);
-    --fcc-separator-size: 5px;
-    --fcc-separator-color: var(--fcc-digit-color);
-    align-items: center;
-    color: var(--fcc-digit-color);
-    cursor: default;
-    display: flex;
-    font-family: inherit;
-    font-size: var(--fcc-digit-font-size);
-    font-weight: 500;
-    line-height: 0;
-    -webkit-user-select: none;
-    user-select:none
-}
-
 ._1tbqx ._3cpN7 {
     margin-bottom:calc(var(--fcc-label-font-size) * 2)
 }
@@ -747,7 +655,7 @@ a {
 
 table {
     background-color: #1e1e22!important;;
-    color: #f1f2f0 !important;
+    color: #f2f1f4 !important;
     font-family: Mulish,sans-serif!important;;
 }
 
@@ -783,6 +691,12 @@ table {
     vertical-align: middle !important;
 }
 
+.app-logo-sidebar-blk {
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+    display: inline !important;
+    vertical-align: middle !important;
+}
 
 .table-title
 {
@@ -884,7 +798,7 @@ table {
 }
 
 .credits-darkbg {
-    color: #f3f4f2 !important;
+    color: var(--text-color) !important;
 }
 
 .credits-lightbg{

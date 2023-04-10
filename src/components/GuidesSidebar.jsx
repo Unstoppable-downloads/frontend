@@ -26,7 +26,7 @@ const GuidesSidebar = () => {
           <ul id="sidebar" className="my-2">
             <li className="mb-2">File publishing service setup</li>
             <li>
-              File indexing service setup
+              <a href="/guides/how-to-index" className="text-iexblk">File indexing service setup</a>
               <ul>
                 <li className="sb-element" id="sb-prerequisites">
                   <a href="/guides/how-to-index#prerequisites" className="text-iexblk text-sm ml-4"
@@ -118,8 +118,18 @@ const GuidesSidebar = () => {
                     Add your private key
                   </a>
                 </li>
-                <li>
-                  <a href="/guides/how-to-index#dockerfile" className="text-iexblk text-sm ml-4">
+                <li className="sb-element" id="sb-dockerfile">
+                  <a href="/guides/how-to-index#dockerfile" className="text-iexblk text-sm ml-4"
+                    onClick={() => {
+                      const qs = document.querySelector("#sb-dockerfile");
+                      const els = document.getElementsByClassName("sb-element")
+                      console.log("els", els)
+                      for (let element of els) {
+                        element.classList.remove("active")
+                      }
+                      qs.classList.toggle("active")
+                    }}
+                  >
                     Run the Dockerfile
                   </a>
                 </li>

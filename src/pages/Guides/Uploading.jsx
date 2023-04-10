@@ -10,6 +10,8 @@ import GuidesSidebar from "../../components/GuidesSidebar";
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const UploadingGuide = () => {
+  const {setBackgroundColor} = useContext(AceContext);
+  
   const [ipfsAvailable, setipfsAvailable] = useState(false);
 
   const sendHelloWorld = async () => {
@@ -37,6 +39,10 @@ const UploadingGuide = () => {
   useEffect(() => {
     sendHelloWorld();
   }, [ipfsAvailable]);
+
+  useEffect(() => {
+    setBackgroundColor(false)
+  }, [])
 
 
   const { pathname } = useLocation()

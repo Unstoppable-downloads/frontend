@@ -9,10 +9,16 @@ import { Link, NavLink } from "react-router-dom";
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const IndexingGuide = () => {
+  const {setBackgroundColor} = useContext(AceContext);
+
   useEffect(() => {
     console.log(document.getElementById("app"))
     document.getElementById("app").style.backgroundColor = "#f2f1f4"
     document.getElementById("app").style.backgroundImage = null
+  }, [])
+
+  useEffect(() => {
+    setBackgroundColor(false)
   }, [])
 
   return (

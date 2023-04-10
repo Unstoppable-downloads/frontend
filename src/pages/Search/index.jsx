@@ -9,7 +9,7 @@ const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
-  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile } = useContext(AceContext);
+  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile, setBackgroundColor } = useContext(AceContext);
 
   useEffect(() => {
 
@@ -21,6 +21,10 @@ function Research() {
     console.log(document.getElementById("app"))
     document.getElementById("app").style.backgroundColor = "rgb(13 13 18)"
     document.getElementById("app").style.backgroundImage = null
+  }, [])
+
+  useEffect(() => {
+    setBackgroundColor(true)
   }, [])
 
   return (
