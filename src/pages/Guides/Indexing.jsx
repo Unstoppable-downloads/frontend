@@ -9,10 +9,16 @@ import { Link, NavLink } from "react-router-dom";
 const APP_NAME = process.env.REACT_APP_NAME;
 
 const IndexingGuide = () => {
+  const {setBackgroundColor} = useContext(AceContext);
+
   useEffect(() => {
     console.log(document.getElementById("app"))
-    document.getElementById("app").style.backgroundColor = "#f1f0f3"
+    document.getElementById("app").style.backgroundColor = "#f2f1f4"
     document.getElementById("app").style.backgroundImage = null
+  }, [])
+
+  useEffect(() => {
+    setBackgroundColor(false)
   }, [])
 
   return (
@@ -20,7 +26,7 @@ const IndexingGuide = () => {
       <Helmet>
         <title>{APP_NAME} | Guide</title>
       </Helmet>
-      <div className="flex">
+      <div className="flex page-subcontainer">
         <div>
           <div className="flex w-max flex-col">
             <div className="text-iexblk">
@@ -29,8 +35,8 @@ const IndexingGuide = () => {
           </div>
         </div>
 
-        <div className="mx-auto ml-m flex w-full flex-col justify-center text-iexblk">
-          <h2 className="mt-16 mb-4 text-5xl font-bold">
+        <div id="indexing" className="mx-auto ml-m flex w-full flex-col justify-center text-iexblk">
+          <h2 className="mb-4 text-5xl font-bold">
             File indexing service setup
           </h2>
           <div className="mt-4 flex w-full flex-col items-start text-left">

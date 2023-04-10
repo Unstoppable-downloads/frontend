@@ -11,7 +11,7 @@ const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Details() {
   const { uid } = useParams();
-  const { detailFile, setDetailFile } = useContext(AceContext);
+  const { detailFile, setDetailFile, setBackgroundColor } = useContext(AceContext);
 
   useEffect(() => {
     const fetchOne = async () => {
@@ -32,6 +32,10 @@ function Details() {
     fetchIMDB();
   }, [detailFile]);
 
+  useEffect(() => {
+    setBackgroundColor(true)
+  }, [])
+
   return (
     <>
       <Helmet>
@@ -40,7 +44,7 @@ function Details() {
         </title>
       </Helmet>
 
-      <div className="flex">
+      <div className="flex page-subcontainer">
         <div className="w-full mr-m">
           {detailFile && (
             <>

@@ -15,7 +15,7 @@ import UploadingGuide from "./pages/Guides/Uploading";
 import IndexingGuide from "./pages/Guides/Indexing";
 
 function App() {
-  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus } = useContext(AceContext);
+  const { connectedAccount, connectWallet, bgUrls, background, creativeMode, setCreativeMode, uploadStatus, setUploadStatus, setBackgroundColor } = useContext(AceContext);
   const { ethereum } = window;
 
   document.onkeydown = function (evt) {
@@ -58,6 +58,10 @@ function App() {
     refreshOnWalletChange();
   }, []);
 
+  useEffect(() => {
+    setBackgroundColor(false)
+  }, [])
+
   const isConnected = connectedAccount !== "";
 
   const refreshOnWalletChange = () => {
@@ -75,7 +79,7 @@ function App() {
       id="app"
       style={{
         // backgroundImage: `url("https://framerusercontent.com/modules/assets/2048/JTTdZra5wxa5h66fJ6xcdSrhck~JI7WW_eXGA4npCJf4aYpm6pYEAlXnzaosDvS7E8qydI.jpg")`,
-        backgroundColor: "#f1f0f3",
+        backgroundColor: "#f2f1f4",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -85,7 +89,7 @@ function App() {
       <Router>
         <NavBar />
 
-        < div className="w-full">
+        <div className="w-full">
           <div className="page-container">
             <main className="w-full text-iexwhite">
               <Routes>

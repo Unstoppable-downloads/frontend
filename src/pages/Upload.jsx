@@ -8,7 +8,7 @@ import StepBar from '../components/StepBar';
 const APP_NAME = process.env.REACT_APP_NAME;
 
 function Upload() {
-  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, numberOfChunks } = useContext(AceContext);
+  const { state, background, bgCreator, bgUrls, bgCreatorSocial, creativeMode, imgUrl, numberOfChunks, setBackgroundColor } = useContext(AceContext);
   
 
   const [message, setMessage] = useState("")
@@ -20,8 +20,10 @@ function Upload() {
     )
   }
 
-  useEffect(()=> {
-    
+  useEffect(() => {
+    console.log(document.getElementById("app"))
+    document.getElementById("app").style.backgroundColor = "rgb(13 13 18)"
+    document.getElementById("app").style.backgroundImage = null
   }, [])
   useEffect(() => {
     writeStatus(state)
@@ -32,6 +34,10 @@ function Upload() {
   useEffect(() => {
   }, [statusWidth])
   useEffect(() => {}, [numberOfChunks])
+
+  useEffect(() => {
+    setBackgroundColor(true)
+  }, [])
 
   
   const onStatusChanged = (newStatus) => {
@@ -70,7 +76,7 @@ function Upload() {
       <Helmet>
         <title>{APP_NAME} | Upload</title>
       </Helmet>
-      <div className="relative flex flex-col mx-auto py-m items-center justify-center">
+      <div className="page-subcontainer flex flex-col mx-auto py-m items-center justify-center">
         <div className="flex">
           <SendForm statusChangedHandler={onStatusChanged} />
         </div>

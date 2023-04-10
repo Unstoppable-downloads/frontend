@@ -10,7 +10,7 @@ module.exports = {
         iexblk: "rgb(13 13 18)",
         iexyellow: "#fcd15a",
         // iexwhite: "#f1f2f0",
-        iexwhite: "#f1f0f3",
+        iexwhite: "#f2f1f4",
         nav: "#8c8c90",
         sidebar: "#18181f",
         main: "#10c8e8"

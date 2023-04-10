@@ -79,7 +79,7 @@ const SearchBar = () => {
             }}
           />
         </div>
-        <div className="mx-auto flex items-center justify-center py-4 text-xl text-iexblk">
+        <div className="mx-auto flex items-center justify-center py-4 text-xl">
           <div className="mr-8">
             <input
               type="checkbox"

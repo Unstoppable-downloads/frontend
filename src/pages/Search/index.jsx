@@ -9,7 +9,7 @@ const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
-  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile } = useContext(AceContext);
+  const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile, setBackgroundColor } = useContext(AceContext);
 
   useEffect(() => {
 
@@ -19,8 +19,12 @@ function Research() {
 
   useEffect(() => {
     console.log(document.getElementById("app"))
-    document.getElementById("app").style.backgroundColor = "#f1f0f3"
+    document.getElementById("app").style.backgroundColor = "rgb(13 13 18)"
     document.getElementById("app").style.backgroundImage = null
+  }, [])
+
+  useEffect(() => {
+    setBackgroundColor(true)
   }, [])
 
   return (
@@ -28,8 +32,8 @@ function Research() {
       <Helmet>
         <title>{APP_NAME} | Home</title>
       </Helmet>
-      <div className="flex">
-        <div className="relative mr-m flex w-3/4 flex-col py-m items-center my-auto">
+      <div className="flex page-subcontainer">
+        <div className="mr-m flex w-3/4 flex-col py-m items-center my-auto">
           {isSearching ? (
             <div className="mb-12 flex w-full">
               <SearchBar />
