@@ -6,7 +6,6 @@ import {sizeToReadableSize} from "../../utils/sizeToReadableSize";
 import SideBar from "../../components/Sidebar";
 import {NavLink} from "react-router-dom";
 const APP_NAME = process.env.REACT_APP_NAME;
-const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Research() {
   const { isSearching, searchTerms, setsearchTerms, filesSearched, setFilesSearched, detailFile, setDetailFile, setBackgroundColor } = useContext(AceContext);

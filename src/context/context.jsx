@@ -1,12 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { create } from "ipfs-http-client";
 import { Buffer } from "buffer";
 import { delay } from "../utils/delay";
 import { getIexec } from "../shared/getIexec";
-
 import { isLightColor } from "../utils/isLightColor";
-
-import * as ace from "../shared/constants";
 
 import { setModalContent } from "../components/Modal/ModalController";
 

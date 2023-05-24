@@ -6,12 +6,12 @@ import SearchBar from "../../components/SearchBar";
 import { sizeToReadableSize } from "../../utils/sizeToReadableSize";
 import SideBar from "../../components/Sidebar";
 import { fetchSearchOne, fetchIMDBResult } from "../../shared/searchData";
+import { downloadFile } from "../../components/Download/downloader.ts";
 const APP_NAME = process.env.REACT_APP_NAME;
 const IS_DEBUG = process.env.REACT_APP_IS_DEBUG === "true";
 
 function Details() {
-  const { uid } = useParams();
-  const { detailFile, setDetailFile, setBackgroundColor } = useContext(AceContext);
+  const { detailFile, setBackgroundColor } = useContext(AceContext);
 
   useEffect(() => {
     const fetchOne = async () => {
@@ -104,6 +104,9 @@ function Details() {
                       <button
                         className="btn h-6 font-bold"
                         id="btn"
+                        onClick={async () => {
+                          await downloadFile(detailFile);
+                        }}
                       >
                         Download
                       </button>
